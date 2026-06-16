@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mustafa Ali — Portfolio</title>
+<style>
+  :root {
+    --bg: #14181f;
+    --bg-alt: #1b212b;
+    --text: #f3efe6;
+    --text-dim: #b9b6ac;
+    --accent: #d9a851;
+    --border: #2a313d;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    line-height: 1.6;
+  }
+
+  .wrap {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  /* Nav */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: rgba(20, 24, 31, 0.85);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  nav .wrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 64px;
+  }
+
+  nav .nav-name {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-style: italic;
+    font-size: 1.1rem;
+    color: var(--accent);
+  }
+
+  nav ul {
+    display: flex;
+    gap: 28px;
+    list-style: none;
+  }
+
+  nav a {
+    color: var(--text-dim);
+    text-decoration: none;
+    font-size: 0.92rem;
+    letter-spacing: 0.02em;
+    transition: color 0.2s ease;
+  }
+
+  nav a:hover { color: var(--accent); }
+
+  /* Hero */
+  header.hero {
+    min-height: 86vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-top: 64px;
+  }
+
+  header.hero h1 {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(2.8rem, 8vw, 5.2rem);
+    color: var(--text);
+    letter-spacing: -0.01em;
+  }
+
+  header.hero .subtitle {
+    margin-top: 14px;
+    font-size: 1.25rem;
+    color: var(--accent);
+    font-weight: 500;
+  }
+
+  header.hero .identity {
+    margin-top: 12px;
+    font-size: 1.05rem;
+    color: var(--text-dim);
+  }
+
+  .hero-links {
+    margin-top: 32px;
+    display: flex;
+    gap: 16px;
+  }
+
+  .btn {
+    display: inline-block;
+    padding: 11px 22px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 600;
+    transition: all 0.2s ease;
+    border: 1px solid transparent;
+  }
+
+  .btn-primary {
+    background: var(--accent);
+    color: #14181f;
+  }
+
+  .btn-primary:hover {
+    background: #e8bb6b;
+    transform: translateY(-2px);
+  }
+
+  .btn-outline {
+    border: 1px solid var(--border);
+    color: var(--text);
+  }
+
+  .btn-outline:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    transform: translateY(-2px);
+  }
+
+  /* Sections */
+  section {
+    padding: 90px 0;
+    border-top: 1px solid var(--border);
+  }
+
+  section h2 {
+    font-size: 0.85rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 36px;
+  }
+
+  /* Projects */
+  .project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 22px;
+  }
+
+  .card {
+    background: var(--bg-alt);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 26px;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+  }
+
+  .card:hover {
+    transform: translateY(-4px);
+    border-color: var(--accent);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.35);
+  }
+
+  .card h3 {
+    font-size: 1.15rem;
+    margin-bottom: 8px;
+  }
+
+  .card p.desc {
+    color: var(--text-dim);
+    font-size: 0.93rem;
+    flex-grow: 1;
+    margin-bottom: 16px;
+  }
+
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 18px;
+  }
+
+  .tag {
+    font-size: 0.72rem;
+    background: rgba(217, 168, 81, 0.12);
+    color: var(--accent);
+    padding: 4px 10px;
+    border-radius: 999px;
+    border: 1px solid rgba(217, 168, 81, 0.3);
+    letter-spacing: 0.02em;
+  }
+
+  .card-links {
+    display: flex;
+    gap: 14px;
+  }
+
+  .card-links a {
+    color: var(--text);
+    font-size: 0.88rem;
+    text-decoration: none;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 2px;
+    transition: color 0.2s ease, border-color 0.2s ease;
+  }
+
+  .card-links a:hover {
+    color: var(--accent);
+    border-color: var(--accent);
+  }
+
+  .card.placeholder {
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: var(--text-dim);
+    border-style: dashed;
+  }
+
+  .card.placeholder .icon {
+    font-size: 1.6rem;
+    margin-bottom: 10px;
+    opacity: 0.6;
+  }
+
+  .card.placeholder h3 {
+    color: var(--text-dim);
+    font-weight: 500;
+  }
+
+  .card.placeholder p.desc {
+    font-size: 0.85rem;
+  }
+
+  /* About */
+  .about-text {
+    max-width: 640px;
+    color: var(--text-dim);
+    font-size: 1.05rem;
+  }
+
+  .about-text strong {
+    color: var(--text);
+    font-weight: 600;
+  }
+
+  /* Contact */
+  .contact-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  footer {
+    text-align: center;
+    padding: 30px 0;
+    color: var(--text-dim);
+    font-size: 0.82rem;
+    border-top: 1px solid var(--border);
+  }
+
+  @media (max-width: 600px) {
+    nav ul { gap: 16px; }
+    nav a { font-size: 0.82rem; }
+    section { padding: 60px 0; }
+    .hero-links { flex-direction: column; }
+    .btn { text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <span class="nav-name">M. Ali</span>
+    <ul>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="wrap">
+  <header class="hero">
+    <h1>Mustafa Ali</h1>
+    <p class="subtitle">Data Science &amp; Economics @ UVA</p>
+    <p class="identity">builder, analyst, sports nerd</p>
+    <div class="hero-links">
+      <a class="btn btn-primary" href="https://www.linkedin.com/in/mustafa-ali-7a15672b4/" target="_blank" rel="noopener">LinkedIn</a>
+      <a class="btn btn-outline" href="https://github.com/fje9hz" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </header>
+
+  <section id="projects">
+    <h2>Projects</h2>
+    <div class="project-grid">
+
+      <div class="card">
+        <h3>Game Script</h3>
+        <p class="desc">NFL win probability predictor that estimates live win likelihood from in-game state, served through a FastAPI backend with a trained scikit-learn model.</p>
+        <div class="tags">
+          <span class="tag">Python</span>
+          <span class="tag">FastAPI</span>
+          <span class="tag">scikit-learn</span>
+          <span class="tag">Docker</span>
+        </div>
+        <div class="card-links">
+          <a href="https://nfl-win-probability.onrender.com" target="_blank" rel="noopener">Live Demo →</a>
+          <a href="https://github.com/fje9hz/nfl-ml-project" target="_blank" rel="noopener">GitHub →</a>
+        </div>
+      </div>
+
+      <div class="card placeholder">
+        <div class="icon">◐</div>
+        <h3>Upcoming Project</h3>
+        <p class="desc">In development. Check back soon.</p>
+      </div>
+
+      <div class="card placeholder">
+        <div class="icon">◐</div>
+        <h3>Upcoming Project</h3>
+        <p class="desc">In development. Check back soon.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="about">
+    <h2>About</h2>
+    <p class="about-text">
+      I'm a <strong>Data Science and Economics</strong> student at the University of Virginia, drawn to problems
+      where numbers and decisions meet — <strong>sports analytics</strong> and <strong>quantitative finance</strong>
+      especially. I like building things that turn messy data into something useful: models, dashboards, tools
+      people actually open more than once. Outside of class, I co-founded <strong>Zindabad</strong>, where I get to
+      apply that same build-and-iterate mindset to something entirely my own.
+    </p>
+  </section>
+
+  <section id="contact">
+    <h2>Contact</h2>
+    <div class="contact-row">
+      <a class="btn btn-outline" href="mailto:mustafa10ali_@outlook.com">Email</a>
+      <a class="btn btn-outline" href="https://www.linkedin.com/in/mustafa-ali-7a15672b4/" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+  </section>
+</div>
+
+<footer>
+  <p>&copy; <span id="year"></span> Mustafa Ali</p>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>
