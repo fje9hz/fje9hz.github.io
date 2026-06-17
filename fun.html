@@ -728,7 +728,7 @@ fetch('https://cdn.jsdelivr.net/npm/world-atlas@2.0.2/countries-110m.json')
     }).addTo(map);
 
     // US states shading
-    const visitedStates = new Set(['California', 'New York', 'Pennsylvania', 'Virginia', 'Maryland', 'New Jersey', 'Florida', 'Texas', 'Georgia', 'North Carolina']);
+    const visitedStates = new Set(['California', 'New York', 'Pennsylvania', 'Virginia', 'Maryland', 'New Jersey', 'Florida', 'Texas', 'Georgia', 'North Carolina', 'South Carolina', 'West Virginia', 'District of Columbia']);
     fetch('https://cdn.jsdelivr.net/npm/us-atlas@3/states-10m.json')
       .then(r => r.json())
       .then(us => {
