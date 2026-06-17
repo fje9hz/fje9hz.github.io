@@ -97,12 +97,15 @@
     height: 62px;
   }
 
-  nav .nav-name {
-    font-family: Georgia, serif;
-    font-style: italic;
-    font-size: 1.1rem;
-    color: var(--accent);
+  nav .nav-name img {
+    height: 38px;
+    width: auto;
+    display: block;
+    filter: brightness(1);
+    transition: opacity 0.2s;
   }
+
+  nav .nav-name img:hover { opacity: 0.85; }
 
   nav ul {
     display: flex;
@@ -724,7 +727,9 @@
 <!-- Nav -->
 <nav>
   <div class="inner">
-    <span class="nav-name">M. Ali</span>
+    <a class="nav-name" href="#">
+      <img src="logo.png" alt="M. Ali" />
+    </a>
     <ul>
       <li><a href="#">Home</a></li>
       <li><a href="#projects">Projects</a></li>
