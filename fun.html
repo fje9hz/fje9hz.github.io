@@ -5,27 +5,28 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Mustafa After 5:00</title>
 <link rel="icon" type="image/png" href="logo.png">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 <style>
   :root {
-    --bg: #14181f;
-    --bg-alt: #1b212b;
-    --bg-card: #1f2633;
-    --text: #f3efe6;
-    --text-dim: #9a9790;
-    --accent: #d9a851;
-    --accent-dim: rgba(217, 168, 81, 0.13);
-    --border: #2a313d;
+    --bg:      #1a1512;
+    --bg-alt:  #211c18;
+    --bg-card: #2a2118;
+    --text:    #f0ead8;
+    --text-dim:#9c9180;
+    --accent:  #d9a851;
+    --accent-dim: rgba(217,168,81,0.14);
+    --border:  #38301f;
   }
 
   [data-theme="light"] {
-    --bg: #f7f4ef;
-    --bg-alt: #edeae4;
-    --bg-card: #e8e4dc;
-    --text: #1a1d22;
-    --text-dim: #6b6860;
-    --accent: #b8852a;
-    --accent-dim: rgba(184, 133, 42, 0.1);
-    --border: #d0ccc4;
+    --bg:      #f5f0e8;
+    --bg-alt:  #ede6d8;
+    --bg-card: #e4dbc8;
+    --text:    #1a1410;
+    --text-dim:#6b6050;
+    --accent:  #b8852a;
+    --accent-dim: rgba(184,133,42,0.12);
+    --border:  #cec4b0;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -35,22 +36,33 @@
     background: var(--bg);
     color: var(--text);
     font-family: 'Helvetica Neue', Arial, sans-serif;
-    line-height: 1.65;
+    line-height: 1.7;
     transition: background 0.25s, color 0.25s;
   }
 
-  /* Nav */
+  /* subtle grain */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.6;
+  }
+
+  /* Nav — identical to main site */
   nav {
     position: sticky;
     top: 0;
-    z-index: 10;
-    background: rgba(20, 24, 31, 0.9);
+    z-index: 100;
+    background: rgba(20, 24, 31, 0.92);
     backdrop-filter: blur(10px);
-    border-bottom: 1px solid var(--border);
+    border-bottom: 1px solid #2a313d;
     transition: background 0.25s;
   }
 
-  [data-theme="light"] nav { background: rgba(247, 244, 239, 0.9); }
+  [data-theme="light"] nav { background: rgba(247,244,239,0.92); border-bottom-color: #d0ccc4; }
 
   nav .inner {
     max-width: 940px;
@@ -62,221 +74,181 @@
     height: 62px;
   }
 
-  nav .nav-name img {
-    height: 38px;
-    width: auto;
-    display: block;
-    transition: opacity 0.2s;
-  }
-
+  nav .nav-name img { height: 38px; width: auto; display: block; transition: opacity 0.2s; }
   nav .nav-name img:hover { opacity: 0.85; }
 
-  nav ul {
-    display: flex;
-    gap: 24px;
-    list-style: none;
-    align-items: center;
-  }
+  nav ul { display: flex; gap: 24px; list-style: none; align-items: center; }
 
   nav a {
-    color: var(--text-dim);
+    color: #9a9790;
     text-decoration: none;
     font-size: 0.88rem;
     letter-spacing: 0.02em;
     transition: color 0.2s;
   }
 
-  nav a:hover, nav a.active { color: var(--accent); }
+  nav a:hover, nav a.active { color: #d9a851; }
 
   .theme-btn {
     background: none;
-    border: 1px solid var(--border);
-    color: var(--text-dim);
+    border: 1px solid #2a313d;
+    color: #9a9790;
     font-size: 0.78rem;
     padding: 5px 12px;
     border-radius: 999px;
     cursor: pointer;
-    letter-spacing: 0.04em;
-    transition: all 0.2s;
     font-family: inherit;
+    transition: all 0.2s;
   }
 
-  .theme-btn:hover { border-color: var(--accent); color: var(--accent); }
+  .theme-btn:hover { border-color: #d9a851; color: #d9a851; }
 
   /* Layout */
-  .wrap {
-    max-width: 940px;
-    margin: 0 auto;
-    padding: 0 24px;
-  }
+  .wrap { max-width: 940px; margin: 0 auto; padding: 0 24px; position: relative; z-index: 1; }
 
-  section {
-    padding: 80px 0;
-    border-top: 1px solid var(--border);
-  }
+  /* Page Hero */
+  .page-hero { padding: 72px 0 56px; }
 
-  .section-label {
-    font-size: 0.76rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 8px;
-  }
-
-  .section-title {
-    font-family: Georgia, serif;
-    font-style: italic;
-    font-weight: 400;
-    font-size: 2rem;
-    margin-bottom: 10px;
-  }
-
-  .section-sub {
-    color: var(--text-dim);
-    font-size: 0.95rem;
-    margin-bottom: 40px;
-  }
-
-  /* Hero */
-  .page-hero {
-    padding: 80px 0 64px;
-  }
-
-  .page-hero .label {
-    font-size: 0.78rem;
-    letter-spacing: 0.2em;
+  .page-hero .eyebrow {
+    font-size: 0.75rem;
+    letter-spacing: 0.22em;
     text-transform: uppercase;
     color: var(--text-dim);
-    margin-bottom: 14px;
+    margin-bottom: 16px;
   }
 
   .page-hero h1 {
     font-family: Georgia, serif;
     font-style: italic;
     font-weight: 400;
-    font-size: clamp(2.4rem, 6vw, 4rem);
-    line-height: 1.1;
-    margin-bottom: 14px;
+    font-size: clamp(2.6rem, 7vw, 4.4rem);
+    line-height: 1.08;
+    margin-bottom: 16px;
+    color: var(--text);
   }
 
   .page-hero .subtitle {
     color: var(--text-dim);
     font-size: 1.05rem;
-    max-width: 480px;
-  }
-
-  /* Back button */
-  .back-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 7px;
-    color: var(--text-dim);
-    text-decoration: none;
-    font-size: 0.85rem;
-    border: 1px solid var(--border);
-    padding: 7px 14px;
-    border-radius: 6px;
-    margin-bottom: 40px;
-    transition: all 0.2s;
-    margin-top: 24px;
-  }
-
-  .back-btn:hover { border-color: var(--accent); color: var(--accent); }
-
-  /* ── PLACES ── */
-  .places-grid {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin-bottom: 20px;
-  }
-
-  .place-badge {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    background: var(--bg-card);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 10px 16px;
-    font-size: 0.9rem;
-    transition: border-color 0.2s, transform 0.2s;
-  }
-
-  .place-badge:hover {
-    border-color: var(--accent);
-    transform: translateY(-2px);
-  }
-
-  .place-badge .flag { font-size: 1.2rem; }
-
-  .place-badge .type {
-    font-size: 0.68rem;
-    color: var(--text-dim);
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-  }
-
-  .places-note {
-    color: var(--text-dim);
-    font-size: 0.88rem;
+    max-width: 420px;
     font-style: italic;
-    margin-top: 18px;
   }
 
-  /* ── FILMS ── */
-  .films-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-    gap: 20px;
+  /* Sections */
+  section {
+    padding: 72px 0;
+    border-top: 1px solid var(--border);
   }
 
-  .film-card {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  .film-poster {
-    width: 100%;
-    aspect-ratio: 2/3;
-    background: var(--bg-card);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--text-dim);
+  .section-eyebrow {
     font-size: 0.72rem;
-    letter-spacing: 0.08em;
+    letter-spacing: 0.22em;
     text-transform: uppercase;
-    text-align: center;
-    padding: 12px;
+    color: var(--accent);
+    margin-bottom: 10px;
+  }
+
+  .section-title {
+    font-family: Georgia, serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(1.7rem, 4vw, 2.4rem);
+    margin-bottom: 10px;
+    line-height: 1.15;
+  }
+
+  .section-sub {
+    color: var(--text-dim);
+    font-size: 0.92rem;
+    font-style: italic;
+    margin-bottom: 40px;
+  }
+
+  /* ── MAP ── */
+  #map {
+    width: 100%;
+    height: 500px;
+    border-radius: 12px;
+    border: 1px solid var(--border);
     overflow: hidden;
-    transition: border-color 0.2s;
+  }
+
+  .map-note {
+    margin-top: 16px;
+    color: var(--accent);
+    font-style: italic;
+    font-size: 0.92rem;
+    letter-spacing: 0.02em;
+  }
+
+  .leaflet-tooltip {
+    background: #1a1512 !important;
+    border: 1px solid #d9a851 !important;
+    color: #f0ead8 !important;
+    font-size: 0.8rem !important;
+    font-family: 'Helvetica Neue', Arial, sans-serif !important;
+    border-radius: 4px !important;
+    padding: 4px 10px !important;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.4) !important;
+  }
+
+  .leaflet-tooltip-left::before,
+  .leaflet-tooltip-right::before { border: none !important; }
+
+  /* ── FILMS (polaroid) ── */
+  .films-shelf {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(155px, 1fr));
+    gap: 28px 20px;
+    padding: 12px 4px;
+  }
+
+  .polaroid {
+    background: #2e261c;
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    padding: 10px 10px 20px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.35);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transform-origin: center bottom;
+  }
+
+  .polaroid:nth-child(odd)  { transform: rotate(-1.4deg); }
+  .polaroid:nth-child(even) { transform: rotate(1.2deg); }
+
+  .polaroid:hover {
+    transform: rotate(0deg) translateY(-6px) scale(1.03) !important;
+    box-shadow: 0 16px 36px rgba(0,0,0,0.5);
+    z-index: 2;
     position: relative;
   }
 
-  .film-poster img {
-    position: absolute;
-    inset: 0;
+  .polaroid-img {
+    width: 100%;
+    aspect-ratio: 2/3;
+    background: var(--bg-alt);
+    overflow: hidden;
+    border-radius: 1px;
+    margin-bottom: 12px;
+  }
+
+  .polaroid-img img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    border-radius: 8px;
+    display: block;
   }
 
-  .film-card:hover .film-poster { border-color: var(--accent); }
-
-  .film-title {
-    font-size: 0.9rem;
-    font-weight: 600;
+  .polaroid-title {
+    font-size: 0.82rem;
+    font-weight: 700;
     color: var(--text);
-    line-height: 1.3;
+    margin-bottom: 5px;
+    letter-spacing: 0.01em;
   }
 
-  .film-take {
-    font-size: 0.8rem;
+  .polaroid-take {
+    font-size: 0.74rem;
     color: var(--text-dim);
     font-style: italic;
     line-height: 1.5;
@@ -285,8 +257,8 @@
   /* ── MUSIC ── */
   .music-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-    gap: 20px;
+    grid-template-columns: repeat(auto-fill, minmax(155px, 1fr));
+    gap: 18px;
     margin-bottom: 32px;
   }
 
@@ -295,25 +267,19 @@
     border: 1px solid var(--border);
     border-radius: 10px;
     overflow: hidden;
-    transition: transform 0.2s, border-color 0.2s;
+    transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
   }
 
   .artist-card:hover {
-    transform: translateY(-3px);
+    transform: translateY(-4px);
     border-color: var(--accent);
+    box-shadow: 0 12px 28px rgba(0,0,0,0.3);
   }
 
   .artist-art {
     width: 100%;
     aspect-ratio: 1;
     background: var(--bg-alt);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--text-dim);
-    font-size: 0.7rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
     overflow: hidden;
     position: relative;
   }
@@ -324,92 +290,69 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: top;
   }
 
-  .artist-info {
-    padding: 12px 14px;
-  }
+  .artist-info { padding: 12px 14px; }
+  .artist-name { font-size: 0.92rem; font-weight: 600; color: var(--text); }
 
-  .artist-name {
-    font-size: 0.92rem;
-    font-weight: 600;
-    color: var(--text);
-  }
-
-  /* AOTY callout */
+  /* AOTY */
   .aoty-card {
     background: var(--bg-card);
     border: 1px solid var(--accent);
-    border-radius: 12px;
+    border-radius: 14px;
     padding: 28px;
     display: flex;
     gap: 28px;
     align-items: flex-start;
+    box-shadow: 0 0 0 1px rgba(217,168,81,0.08), 0 8px 32px rgba(0,0,0,0.25);
   }
 
   .aoty-art {
-    width: 120px;
-    height: 120px;
+    width: 130px;
+    height: 130px;
     flex-shrink: 0;
-    background: var(--bg-alt);
     border-radius: 8px;
-    border: 1px solid var(--border);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--text-dim);
-    font-size: 0.68rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    text-align: center;
     overflow: hidden;
+    border: 1px solid var(--border);
     position: relative;
+    background: var(--bg-alt);
   }
 
-  .aoty-art img {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 8px;
-  }
+  .aoty-art img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
-  .aoty-label {
-    font-size: 0.72rem;
+  .aoty-badge {
+    font-size: 0.7rem;
     letter-spacing: 0.16em;
     text-transform: uppercase;
     color: var(--accent);
-    margin-bottom: 6px;
+    margin-bottom: 8px;
   }
 
   .aoty-title {
     font-family: Georgia, serif;
     font-style: italic;
-    font-size: 1.4rem;
-    margin-bottom: 4px;
+    font-size: 1.5rem;
+    font-weight: 400;
+    margin-bottom: 3px;
   }
 
-  .aoty-artist {
-    font-size: 0.9rem;
-    color: var(--text-dim);
-    margin-bottom: 12px;
-  }
+  .aoty-artist { font-size: 0.88rem; color: var(--text-dim); margin-bottom: 14px; }
 
   .aoty-note {
     font-size: 0.88rem;
     color: var(--text-dim);
     font-style: italic;
-    line-height: 1.6;
     border-left: 2px solid var(--accent);
     padding-left: 12px;
+    line-height: 1.6;
   }
 
   /* ── FOOD ── */
   .food-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
-    gap: 20px;
+    gap: 18px;
     margin-bottom: 24px;
   }
 
@@ -421,49 +364,21 @@
     transition: transform 0.2s, border-color 0.2s;
   }
 
-  .food-card:hover {
-    transform: translateY(-3px);
-    border-color: var(--accent);
-  }
+  .food-card:hover { transform: translateY(-3px); border-color: var(--accent); }
 
   .food-img {
     width: 100%;
     aspect-ratio: 4/3;
-    background: var(--bg-alt);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--text-dim);
-    font-size: 0.7rem;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
     overflow: hidden;
     position: relative;
+    background: var(--bg-alt);
   }
 
-  .food-img img {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
+  .food-img img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 
-  .food-info {
-    padding: 14px 16px;
-  }
-
-  .food-name {
-    font-size: 0.95rem;
-    font-weight: 600;
-    color: var(--text);
-    margin-bottom: 4px;
-  }
-
-  .food-note {
-    font-size: 0.8rem;
-    color: var(--text-dim);
-  }
+  .food-info { padding: 13px 15px; }
+  .food-name { font-size: 0.95rem; font-weight: 600; color: var(--text); margin-bottom: 3px; }
+  .food-note { font-size: 0.79rem; color: var(--text-dim); }
 
   .food-callout {
     background: var(--bg-alt);
@@ -485,20 +400,23 @@
     font-size: 0.8rem;
     border-top: 1px solid var(--border);
     margin-top: 40px;
+    position: relative;
+    z-index: 1;
   }
 
   @media (max-width: 640px) {
-    nav ul { gap: 14px; }
-    nav a { font-size: 0.8rem; }
-    section { padding: 56px 0; }
-    .films-grid { grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); }
+    nav ul { gap: 12px; }
+    nav a  { font-size: 0.78rem; }
+    #map   { height: 320px; }
+    .films-shelf { grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 20px 14px; }
     .aoty-card { flex-direction: column; }
-    .aoty-art { width: 100%; height: 180px; }
+    .aoty-art  { width: 100%; height: 180px; }
   }
 </style>
 </head>
 <body>
 
+<!-- Nav — same as main site -->
 <nav>
   <div class="inner">
     <a class="nav-name" href="index.html">
@@ -516,199 +434,77 @@
 
 <div class="wrap">
 
+  <!-- Hero -->
   <div class="page-hero">
-    <p class="label">Beyond the resume</p>
+    <p class="eyebrow">Beyond the resume</p>
     <h1>Mustafa After 5:00</h1>
     <p class="subtitle">The stuff that doesn't go on a resume.</p>
   </div>
 
   <!-- ── PLACES ── -->
   <section id="places">
-    <p class="section-label">Places</p>
+    <p class="section-eyebrow">Places</p>
     <h2 class="section-title">Where I've Been</h2>
-    <p class="section-sub">A running list. Always adding to it.</p>
+    <p class="section-sub">9 countries and counting. Always looking for the next one.</p>
 
-    <div class="places-grid">
-
-      <div class="place-badge">
-        <span class="flag">🇲🇽</span>
-        <div>
-          <div>Mexico</div>
-          <div class="type">Country</div>
-        </div>
-      </div>
-
-      <div class="place-badge">
-        <span class="flag">🇩🇴</span>
-        <div>
-          <div>Dominican Republic</div>
-          <div class="type">Country</div>
-        </div>
-      </div>
-
-      <div class="place-badge">
-        <span class="flag">🇮🇹</span>
-        <div>
-          <div>Italy</div>
-          <div class="type">Country</div>
-        </div>
-      </div>
-
-      <div class="place-badge">
-        <span class="flag">🇫🇷</span>
-        <div>
-          <div>France</div>
-          <div class="type">Country</div>
-        </div>
-      </div>
-
-      <div class="place-badge">
-        <span class="flag">🇹🇷</span>
-        <div>
-          <div>Turkey</div>
-          <div class="type">Country</div>
-        </div>
-      </div>
-
-      <div class="place-badge">
-        <span class="flag">🇵🇰</span>
-        <div>
-          <div>Pakistan</div>
-          <div class="type">Country</div>
-        </div>
-      </div>
-
-      <div class="place-badge">
-        <span class="flag">🇸🇦</span>
-        <div>
-          <div>Saudi Arabia</div>
-          <div class="type">Country</div>
-        </div>
-      </div>
-
-      <div class="place-badge">
-        <span class="flag">🇯🇲</span>
-        <div>
-          <div>Jamaica</div>
-          <div class="type">Country</div>
-        </div>
-      </div>
-
-      <div class="place-badge">
-        <span class="flag">🇧🇸</span>
-        <div>
-          <div>The Bahamas</div>
-          <div class="type">Country</div>
-        </div>
-      </div>
-
-      <div class="place-badge">
-        <span class="flag">🌉</span>
-        <div>
-          <div>San Francisco</div>
-          <div class="type">City</div>
-        </div>
-      </div>
-
-      <div class="place-badge">
-        <span class="flag">🌴</span>
-        <div>
-          <div>Los Angeles</div>
-          <div class="type">City</div>
-        </div>
-      </div>
-
-      <div class="place-badge">
-        <span class="flag">🏖️</span>
-        <div>
-          <div>Santa Monica</div>
-          <div class="type">City</div>
-        </div>
-      </div>
-
-      <div class="place-badge">
-        <span class="flag">🌊</span>
-        <div>
-          <div>Santa Barbara</div>
-          <div class="type">City</div>
-        </div>
-      </div>
-
-      <div class="place-badge">
-        <span class="flag">🗽</span>
-        <div>
-          <div>New York</div>
-          <div class="type">City</div>
-        </div>
-      </div>
-
-      <div class="place-badge">
-        <span class="flag">🔔</span>
-        <div>
-          <div>Philadelphia</div>
-          <div class="type">City</div>
-        </div>
-      </div>
-
-    </div>
-
-    <p class="places-note">Always looking for the next one.</p>
+    <div id="map"></div>
+    <p class="map-note">Always looking for the next one.</p>
   </section>
 
   <!-- ── FILMS ── -->
   <section id="films">
-    <p class="section-label">Films</p>
+    <p class="section-eyebrow">Film</p>
     <h2 class="section-title">What I Watch</h2>
     <p class="section-sub">Not reviews. Just takes.</p>
 
-    <div class="films-grid">
+    <div class="films-shelf">
 
-      <div class="film-card">
-        <div class="film-poster">
-          <img src="https://media.themoviedb.org/t/p/w300_and_h450_face/j8szC8OgrejDQjjMKSVXyaAjw3V.jpg" alt="Bullet Train poster" />
+      <div class="polaroid">
+        <div class="polaroid-img">
+          <img src="https://media.themoviedb.org/t/p/w300_and_h450_face/j8szC8OgrejDQjjMKSVXyaAjw3V.jpg" alt="Bullet Train" />
         </div>
-        <div class="film-title">Bullet Train</div>
-        <div class="film-take">"Style, chaos, and Brad Pitt — perfect movie."</div>
+        <div class="polaroid-title">Bullet Train</div>
+        <div class="polaroid-take">"Style, chaos, and Brad Pitt — perfect movie."</div>
       </div>
 
-      <div class="film-card">
-        <div class="film-poster">
-          <img src="https://media.themoviedb.org/t/p/w300_and_h450_face/yQvGrMoipbRoddT0ZR8tPoR7NfX.jpg" alt="Interstellar poster" />
+      <div class="polaroid">
+        <div class="polaroid-img">
+          <img src="https://media.themoviedb.org/t/p/w300_and_h450_face/yQvGrMoipbRoddT0ZR8tPoR7NfX.jpg" alt="Interstellar" />
         </div>
-        <div class="film-title">Interstellar</div>
-        <div class="film-take">"The only movie that made me feel small in a good way."</div>
+        <div class="polaroid-title">Interstellar</div>
+        <div class="polaroid-take">"The only movie that made me feel small in a good way."</div>
       </div>
 
-      <div class="film-card">
-        <div class="film-poster">
-          <img src="https://media.themoviedb.org/t/p/w300_and_h450_face/74xTEgt7R36Fpooo50r9T25onhq.jpg" alt="The Batman poster" />
+      <div class="polaroid">
+        <div class="polaroid-img">
+          <img src="https://media.themoviedb.org/t/p/w300_and_h450_face/74xTEgt7R36Fpooo50r9T25onhq.jpg" alt="The Batman" />
         </div>
-        <div class="film-title">The Batman</div>
-        <div class="film-take">"Best Batman. Not up for debate."</div>
+        <div class="polaroid-title">The Batman</div>
+        <div class="polaroid-take">"Best Batman. Not up for debate."</div>
       </div>
 
-      <div class="film-card">
-        <div class="film-poster">
-          <img src="https://media.themoviedb.org/t/p/w300_and_h450_face/iiZZdoQBEYBv6id8su7ImL0oCbD.jpg" alt="Spider-Verse poster" />
+      <div class="polaroid">
+        <div class="polaroid-img">
+          <img src="https://media.themoviedb.org/t/p/w300_and_h450_face/iiZZdoQBEYBv6id8su7ImL0oCbD.jpg" alt="Spider-Verse" />
         </div>
-        <div class="film-title">Spider-Verse</div>
-        <div class="film-take">"Changed what animated movies can be."</div>
+        <div class="polaroid-title">Spider-Verse</div>
+        <div class="polaroid-take">"Changed what animated movies can be."</div>
       </div>
 
-      <div class="film-card">
-        <div class="film-poster">
-          <img src="https://media.themoviedb.org/t/p/w300_and_h450_face/8Vt6mWEReuy4Of61Lnj5Xj704m8.jpg" alt="Across the Spider-Verse poster" />
+      <div class="polaroid">
+        <div class="polaroid-img">
+          <img src="https://media.themoviedb.org/t/p/w300_and_h450_face/8Vt6mWEReuy4Of61Lnj5Xj704m8.jpg" alt="Across the Spider-Verse" />
         </div>
-        <div class="film-title">Across the Spider-Verse</div>
-        <div class="film-take">"Somehow topped the first one."</div>
+        <div class="polaroid-title">Across the Spider-Verse</div>
+        <div class="polaroid-take">"Somehow topped the first one."</div>
       </div>
 
-      <div class="film-card">
-        <div class="film-poster">
-          <img src="https://media.themoviedb.org/t/p/w300_and_h450_face/9PXZIUsSDh4alB80jheWX4fhZmy.jpg" alt="F1 poster" />
+      <div class="polaroid">
+        <div class="polaroid-img">
+          <img src="https://media.themoviedb.org/t/p/w300_and_h450_face/9PXZIUsSDh4alB80jheWX4fhZmy.jpg" alt="F1" />
         </div>
-        <div class="film-title">F1</div>
-        <div class="film-take">"Made me care about a sport I knew nothing about."</div>
+        <div class="polaroid-title">F1</div>
+        <div class="polaroid-take">"Made me care about a sport I knew nothing about."</div>
       </div>
 
     </div>
@@ -716,53 +512,55 @@
 
   <!-- ── MUSIC ── -->
   <section id="music">
-    <p class="section-label">Music</p>
+    <p class="section-eyebrow">Music</p>
     <h2 class="section-title">What I Listen To</h2>
     <p class="section-sub">Rotation stays consistent.</p>
 
     <div class="music-grid">
 
       <div class="artist-card">
-        <div class="artist-art"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/2025-0120_Cole_Gahagan_Michael_Rubin_Travis_Scott_%28cropped%29.jpg/250px-2025-0120_Cole_Gahagan_Michael_Rubin_Travis_Scott_%28cropped%29.jpg" alt="Travis Scott" /></div>
-        <div class="artist-info">
-          <div class="artist-name">Travis Scott</div>
+        <div class="artist-art">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/2025-0120_Cole_Gahagan_Michael_Rubin_Travis_Scott_%28cropped%29.jpg/250px-2025-0120_Cole_Gahagan_Michael_Rubin_Travis_Scott_%28cropped%29.jpg" alt="Travis Scott" />
         </div>
+        <div class="artist-info"><div class="artist-name">Travis Scott</div></div>
       </div>
 
       <div class="artist-card">
-        <div class="artist-art"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Future_-_Openair_Frauenfeld_2019_01_%28cropped%29.jpg/250px-Future_-_Openair_Frauenfeld_2019_01_%28cropped%29.jpg" alt="Future" /></div>
-        <div class="artist-info">
-          <div class="artist-name">Future</div>
+        <div class="artist-art">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Future_-_Openair_Frauenfeld_2019_01_%28cropped%29.jpg/250px-Future_-_Openair_Frauenfeld_2019_01_%28cropped%29.jpg" alt="Future" />
         </div>
+        <div class="artist-info"><div class="artist-name">Future</div></div>
       </div>
 
       <div class="artist-card">
-        <div class="artist-art"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Drake_at_The_Carter_Effect_2017_%2836818935200%29_%28cropped%29.jpg/250px-Drake_at_The_Carter_Effect_2017_%2836818935200%29_%28cropped%29.jpg" alt="Drake" /></div>
-        <div class="artist-info">
-          <div class="artist-name">Drake</div>
+        <div class="artist-art">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Drake_at_The_Carter_Effect_2017_%2836818935200%29_%28cropped%29.jpg/250px-Drake_at_The_Carter_Effect_2017_%2836818935200%29_%28cropped%29.jpg" alt="Drake" />
         </div>
+        <div class="artist-info"><div class="artist-name">Drake</div></div>
       </div>
 
       <div class="artist-card">
-        <div class="artist-art"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/The_Weeknd_Portrait_by_Brian_Ziff.jpg/250px-The_Weeknd_Portrait_by_Brian_Ziff.jpg" alt="The Weeknd" /></div>
-        <div class="artist-info">
-          <div class="artist-name">The Weeknd</div>
+        <div class="artist-art">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/The_Weeknd_Portrait_by_Brian_Ziff.jpg/250px-The_Weeknd_Portrait_by_Brian_Ziff.jpg" alt="The Weeknd" />
         </div>
+        <div class="artist-info"><div class="artist-name">The Weeknd</div></div>
       </div>
 
       <div class="artist-card">
-        <div class="artist-art"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Tory_Lanez_2500x1669.jpg/250px-Tory_Lanez_2500x1669.jpg" alt="Tory Lanez" /></div>
-        <div class="artist-info">
-          <div class="artist-name">Tory Lanez</div>
+        <div class="artist-art">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Tory_Lanez_2500x1669.jpg/250px-Tory_Lanez_2500x1669.jpg" alt="Tory Lanez" />
         </div>
+        <div class="artist-info"><div class="artist-name">Tory Lanez</div></div>
       </div>
 
     </div>
 
     <div class="aoty-card">
-      <div class="aoty-art"><img src="https://upload.wikimedia.org/wikipedia/en/8/8a/Alatprom.jpg" alt="Alone at Prom" /></div>
+      <div class="aoty-art">
+        <img src="https://upload.wikimedia.org/wikipedia/en/8/8a/Alatprom.jpg" alt="Alone at Prom" />
+      </div>
       <div>
-        <p class="aoty-label">★ Favorite Album of All Time</p>
+        <p class="aoty-badge">★ Favorite Album of All Time</p>
         <h3 class="aoty-title">Alone at Prom</h3>
         <p class="aoty-artist">Tory Lanez</p>
         <p class="aoty-note">If you know, you know.</p>
@@ -772,14 +570,16 @@
 
   <!-- ── FOOD ── -->
   <section id="food">
-    <p class="section-label">Food</p>
+    <p class="section-eyebrow">Food</p>
     <h2 class="section-title">What I Eat</h2>
     <p class="section-sub">Not picky. Just particular.</p>
 
     <div class="food-grid">
 
       <div class="food-card">
-        <div class="food-img"><img src="https://plus.unsplash.com/premium_photo-1694141252774-c937d97641da?fm=jpg&q=60&w=800&auto=format&fit=crop" alt="Pakistani food" /></div>
+        <div class="food-img">
+          <img src="https://plus.unsplash.com/premium_photo-1694141252774-c937d97641da?fm=jpg&q=60&w=800&auto=format&fit=crop" alt="Pakistani food" />
+        </div>
         <div class="food-info">
           <div class="food-name">Pakistani</div>
           <div class="food-note">Home base. Nothing touches it.</div>
@@ -787,7 +587,9 @@
       </div>
 
       <div class="food-card">
-        <div class="food-img"><img src="https://images.unsplash.com/photo-1561620141-343a829938de?fm=jpg&q=60&w=800&auto=format&fit=crop" alt="Arabic food" /></div>
+        <div class="food-img">
+          <img src="https://images.unsplash.com/photo-1561620141-343a829938de?fm=jpg&q=60&w=800&auto=format&fit=crop" alt="Shawarma" />
+        </div>
         <div class="food-info">
           <div class="food-name">Arabic</div>
           <div class="food-note">Shawarma is a lifestyle.</div>
@@ -795,7 +597,9 @@
       </div>
 
       <div class="food-card">
-        <div class="food-img"><img src="https://plus.unsplash.com/premium_photo-1661611585910-77ae42f0c71d?fm=jpg&q=60&w=800&auto=format&fit=crop" alt="Thai food" /></div>
+        <div class="food-img">
+          <img src="https://plus.unsplash.com/premium_photo-1661611585910-77ae42f0c71d?fm=jpg&q=60&w=800&auto=format&fit=crop" alt="Thai food" />
+        </div>
         <div class="food-info">
           <div class="food-name">Thai</div>
           <div class="food-note">Underrated. Always hits.</div>
@@ -803,7 +607,9 @@
       </div>
 
       <div class="food-card">
-        <div class="food-img"><img src="https://plus.unsplash.com/premium_photo-1661730329741-b3bf77019b39?fm=jpg&q=60&w=800&auto=format&fit=crop" alt="Mexican food" /></div>
+        <div class="food-img">
+          <img src="https://plus.unsplash.com/premium_photo-1661730329741-b3bf77019b39?fm=jpg&q=60&w=800&auto=format&fit=crop" alt="Mexican food" />
+        </div>
         <div class="food-info">
           <div class="food-name">Mexican</div>
           <div class="food-note">Birria tacos changed my life.</div>
@@ -811,7 +617,9 @@
       </div>
 
       <div class="food-card">
-        <div class="food-img"><img src="https://plus.unsplash.com/premium_photo-1683619761468-b06992704398?fm=jpg&q=60&w=800&auto=format&fit=crop" alt="American food" /></div>
+        <div class="food-img">
+          <img src="https://plus.unsplash.com/premium_photo-1683619761468-b06992704398?fm=jpg&q=60&w=800&auto=format&fit=crop" alt="Smashburger" />
+        </div>
         <div class="food-info">
           <div class="food-name">American</div>
           <div class="food-note">A good smashburger never misses.</div>
@@ -831,19 +639,119 @@
   <p>&copy; <span id="year"></span> Mustafa Ali &nbsp;·&nbsp; The part that doesn't go on a resume</p>
 </footer>
 
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/topojson-client@3/dist/topojson-client.min.js"></script>
 <script>
-  document.getElementById('year').textContent = new Date().getFullYear();
+document.getElementById('year').textContent = new Date().getFullYear();
 
-  const toggle = document.getElementById('themeToggle');
-  const html = document.documentElement;
-  let dark = true;
+// Theme toggle
+const toggle = document.getElementById('themeToggle');
+const html   = document.documentElement;
+let dark = true;
+toggle.addEventListener('click', () => {
+  dark = !dark;
+  html.setAttribute('data-theme', dark ? 'dark' : 'light');
+  toggle.textContent = dark ? '☀ Light' : '☾ Dark';
+});
 
-  toggle.addEventListener('click', () => {
-    dark = !dark;
-    html.setAttribute('data-theme', dark ? 'dark' : 'light');
-    toggle.textContent = dark ? '☀ Light' : '☾ Dark';
+// ── MAP ──
+const map = L.map('map', {
+  center: [20, 10],
+  zoom: 2,
+  minZoom: 1,
+  maxZoom: 6,
+  zoomControl: true,
+  attributionControl: false,
+});
+
+L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+  subdomains: 'abcd',
+  maxZoom: 19,
+}).addTo(map);
+
+// Numeric ISO 3166-1 codes for visited countries
+const visitedCountries = new Set([
+  484,  // Mexico
+  214,  // Dominican Republic
+  380,  // Italy
+  250,  // France
+  792,  // Turkey
+  586,  // Pakistan
+  682,  // Saudi Arabia
+  388,  // Jamaica
+  44,   // Bahamas
+]);
+
+const countryNames = {
+  484: 'Mexico', 214: 'Dominican Republic', 380: 'Italy',
+  250: 'France', 792: 'Turkey', 586: 'Pakistan',
+  682: 'Saudi Arabia', 388: 'Jamaica', 44: 'The Bahamas',
+};
+
+fetch('https://cdn.jsdelivr.net/npm/world-atlas@2.0.2/countries-110m.json')
+  .then(r => r.json())
+  .then(world => {
+    const geojson = topojson.feature(world, world.objects.countries);
+
+    L.geoJSON(geojson, {
+      style: feature => {
+        const id = parseInt(feature.id, 10);
+        const visited = visitedCountries.has(id);
+        return {
+          fillColor:   visited ? '#d9a851' : 'transparent',
+          fillOpacity: visited ? 0.35 : 0,
+          color:       visited ? '#d9a851' : '#2a2a2a',
+          weight:      visited ? 1.5 : 0.4,
+          opacity:     visited ? 0.9 : 0.3,
+        };
+      },
+      onEachFeature: (feature, layer) => {
+        const id = parseInt(feature.id, 10);
+        if (visitedCountries.has(id)) {
+          layer.bindTooltip(countryNames[id], {
+            sticky: true,
+            className: '',
+            offset: [8, 0],
+          });
+          layer.on('mouseover', function() {
+            this.setStyle({ fillOpacity: 0.55, weight: 2 });
+          });
+          layer.on('mouseout', function() {
+            this.setStyle({ fillOpacity: 0.35, weight: 1.5 });
+          });
+        }
+      },
+    }).addTo(map);
+
+    // City pins
+    const cities = [
+      { name: 'San Francisco',  lat: 37.7749,  lng: -122.4194 },
+      { name: 'Los Angeles',    lat: 34.0522,  lng: -118.2437 },
+      { name: 'Santa Monica',   lat: 34.0195,  lng: -118.4912 },
+      { name: 'Santa Barbara',  lat: 34.4208,  lng: -119.6982 },
+      { name: 'New York',       lat: 40.7128,  lng: -74.0060  },
+      { name: 'Philadelphia',   lat: 39.9526,  lng: -75.1652  },
+    ];
+
+    const pinIcon = L.divIcon({
+      html: `<div style="
+        width:10px;height:10px;
+        background:#d9a851;
+        border:2px solid #f0ead8;
+        border-radius:50%;
+        box-shadow:0 0 6px rgba(217,168,81,0.7);
+      "></div>`,
+      className: '',
+      iconSize: [10, 10],
+      iconAnchor: [5, 5],
+    });
+
+    cities.forEach(c => {
+      L.marker([c.lat, c.lng], { icon: pinIcon })
+        .addTo(map)
+        .bindTooltip(c.name, { sticky: true, className: '' });
+    });
   });
 </script>
-
 </body>
 </html>
