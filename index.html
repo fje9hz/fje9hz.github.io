@@ -554,7 +554,37 @@
     line-height: 1.7;
   }
 
-  .contact-row { display: flex; flex-wrap: wrap; gap: 12px; }
+  .contact-row { display: flex; flex-wrap: wrap; gap: 16px; }
+
+  .contact-card {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 18px;
+    text-decoration: none;
+    transition: border-color 0.2s, transform 0.2s;
+    min-width: 200px;
+  }
+
+  .contact-card:hover {
+    border-color: var(--accent);
+    transform: translateY(-2px);
+  }
+
+  .contact-card .cc-label {
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+
+  .contact-card .cc-value {
+    font-size: 0.88rem;
+    color: var(--text);
+  }
 
   footer {
     text-align: center;
@@ -692,6 +722,7 @@
   <div class="inner">
     <span class="nav-name">M. Ali</span>
     <ul>
+      <li><a href="#">Home</a></li>
       <li><a href="#projects">Projects</a></li>
       <li><a href="#experience">Experience</a></li>
       <li><a href="#skills">Skills</a></li>
@@ -1026,8 +1057,22 @@
     <p class="section-label">Contact</p>
     <p class="contact-intro">Always open to interesting conversations — whether it's a role, a project idea, or just sports analytics. Best reached by email.</p>
     <div class="contact-row">
-      <a class="btn btn-primary" href="mailto:mustafa10ali_@outlook.com">Email →</a>
-      <a class="btn btn-outline" href="https://www.linkedin.com/in/mustafa-ali-7a15672b4/" target="_blank" rel="noopener">LinkedIn →</a>
+      <a class="contact-card" href="mailto:mustafa10ali_@outlook.com">
+        <span class="cc-label">Email</span>
+        <span class="cc-value">mustafa10ali_@outlook.com</span>
+      </a>
+      <a class="contact-card" href="mailto:fje9hz@virginia.edu">
+        <span class="cc-label">Student Email</span>
+        <span class="cc-value">fje9hz@virginia.edu</span>
+      </a>
+      <a class="contact-card" href="https://www.linkedin.com/in/mustafa-ali-7a15672b4/" target="_blank" rel="noopener">
+        <span class="cc-label">LinkedIn</span>
+        <span class="cc-value">mustafa-ali-7a15672b4</span>
+      </a>
+      <a class="contact-card" href="https://github.com/fje9hz" target="_blank" rel="noopener">
+        <span class="cc-label">GitHub</span>
+        <span class="cc-value">github.com/fje9hz</span>
+      </a>
     </div>
   </section>
 
