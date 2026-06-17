@@ -167,7 +167,52 @@
     flex-direction: column;
     justify-content: center;
     padding-top: 36px;
+    position: relative;
+    overflow: hidden;
   }
+
+  /* ── Hero background pattern ─────────────────────────────────────────────
+     Layered SVG data URI sitting behind all hero content.
+     To adjust visibility: change the opacity value on header.hero::before.
+     To adjust grid density: edit the 40 in `backgroundSize: 40px 40px`.
+     The SVG encodes: grid lines, scatter dots, connector lines, route arcs.
+  ──────────────────────────────────────────────────────────────────────── */
+  header.hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    opacity: 0.13; /* ← tweak this (0.05 = barely visible, 0.2 = more present) */
+    pointer-events: none;
+
+    /* Repeating grid */
+    background-image:
+      linear-gradient(to right,  #d9a851 1px, transparent 1px),
+      linear-gradient(to bottom, #d9a851 1px, transparent 1px);
+    background-size: 40px 40px; /* ← grid cell size */
+
+    /* Fade out toward bottom so it blends into the next section */
+    -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0) 100%);
+    mask-image:         linear-gradient(to bottom, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0) 100%);
+  }
+
+  /* SVG overlay: dots, connectors, route arcs */
+  header.hero::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0.18; /* ← tweak this independently from the grid */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='900' height='600' viewBox='0 0 900 600'%3E%3Cg fill='none' stroke='%23d9a851' stroke-linecap='round'%3E%3C!-- connector lines between data points --%3E%3Cline x1='120' y1='90'  x2='280' y2='170' stroke-width='0.8' opacity='0.6'/%3E%3Cline x1='280' y1='170' x2='460' y2='130' stroke-width='0.8' opacity='0.6'/%3E%3Cline x1='460' y1='130' x2='650' y2='200' stroke-width='0.8' opacity='0.6'/%3E%3Cline x1='650' y1='200' x2='780' y2='110' stroke-width='0.8' opacity='0.6'/%3E%3Cline x1='80'  y1='320' x2='210' y2='280' stroke-width='0.8' opacity='0.5'/%3E%3Cline x1='210' y1='280' x2='370' y2='350' stroke-width='0.8' opacity='0.5'/%3E%3Cline x1='370' y1='350' x2='540' y2='290' stroke-width='0.8' opacity='0.5'/%3E%3C!-- scatter data-point dots --%3E%3Ccircle cx='120' cy='90'  r='3' fill='%23d9a851' stroke='none' opacity='0.8'/%3E%3Ccircle cx='280' cy='170' r='3' fill='%23d9a851' stroke='none' opacity='0.8'/%3E%3Ccircle cx='460' cy='130' r='3' fill='%23d9a851' stroke='none' opacity='0.8'/%3E%3Ccircle cx='650' cy='200' r='3' fill='%23d9a851' stroke='none' opacity='0.8'/%3E%3Ccircle cx='780' cy='110' r='3' fill='%23d9a851' stroke='none' opacity='0.8'/%3E%3Ccircle cx='80'  cy='320' r='2.5' fill='%23d9a851' stroke='none' opacity='0.7'/%3E%3Ccircle cx='210' cy='280' r='2.5' fill='%23d9a851' stroke='none' opacity='0.7'/%3E%3Ccircle cx='370' cy='350' r='2.5' fill='%23d9a851' stroke='none' opacity='0.7'/%3E%3Ccircle cx='540' cy='290' r='2.5' fill='%23d9a851' stroke='none' opacity='0.7'/%3E%3Ccircle cx='820' cy='380' r='2'   fill='%23d9a851' stroke='none' opacity='0.5'/%3E%3Ccircle cx='700' cy='420' r='2'   fill='%23d9a851' stroke='none' opacity='0.5'/%3E%3Ccircle cx='160' cy='460' r='2'   fill='%23d9a851' stroke='none' opacity='0.4'/%3E%3Ccircle cx='340' cy='500' r='2'   fill='%23d9a851' stroke='none' opacity='0.4'/%3E%3C!-- football play route arcs (abstract, not literal) --%3E%3Cpath d='M 100 520 Q 200 400 310 460' stroke-width='1.2' opacity='0.45'/%3E%3Cpath d='M 310 460 Q 390 500 430 380' stroke-width='1.2' opacity='0.45'/%3E%3Cpath d='M 560 540 Q 680 460 720 340' stroke-width='1'   opacity='0.35'/%3E%3Cpath d='M 720 340 Q 760 240 840 260' stroke-width='1'   opacity='0.35'/%3E%3C!-- tiny isolated accent dots for texture --%3E%3Ccircle cx='490' cy='440' r='1.5' fill='%23d9a851' stroke='none' opacity='0.4'/%3E%3Ccircle cx='620' cy='510' r='1.5' fill='%23d9a851' stroke='none' opacity='0.4'/%3E%3Ccircle cx='750' cy='480' r='1.5' fill='%23d9a851' stroke='none' opacity='0.3'/%3E%3Ccircle cx='50'  cy='200' r='1.5' fill='%23d9a851' stroke='none' opacity='0.3'/%3E%3Ccircle cx='870' cy='300' r='1.5' fill='%23d9a851' stroke='none' opacity='0.3'/%3E%3C/g%3E%3C/svg%3E");
+    background-size: cover;
+    background-position: center top;
+    -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0) 100%);
+    mask-image:         linear-gradient(to bottom, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0) 100%);
+  }
+
+  /* Ensure hero content sits above the pattern layers */
+  header.hero > * { position: relative; z-index: 1; }
 
   .hero-label {
     font-size: 0.78rem;
