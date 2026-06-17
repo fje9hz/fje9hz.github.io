@@ -727,34 +727,49 @@ fetch('https://cdn.jsdelivr.net/npm/world-atlas@2.0.2/countries-110m.json')
       },
     }).addTo(map);
 
-    // City pins
-    const cities = [
-      { name: 'San Francisco',  lat: 37.7749,  lng: -122.4194 },
-      { name: 'Los Angeles',    lat: 34.0522,  lng: -118.2437 },
-      { name: 'Santa Monica',   lat: 34.0195,  lng: -118.4912 },
-      { name: 'Santa Barbara',  lat: 34.4208,  lng: -119.6982 },
-      { name: 'New York',       lat: 40.7128,  lng: -74.0060  },
-      { name: 'Philadelphia',   lat: 39.9526,  lng: -75.1652  },
-    ];
-
-    const pinIcon = L.divIcon({
-      html: `<div style="
-        width:10px;height:10px;
-        background:#d9a851;
-        border:2px solid #f0ead8;
-        border-radius:50%;
-        box-shadow:0 0 6px rgba(217,168,81,0.7);
-      "></div>`,
-      className: '',
-      iconSize: [10, 10],
-      iconAnchor: [5, 5],
-    });
-
-    cities.forEach(c => {
-      L.marker([c.lat, c.lng], { icon: pinIcon })
-        .addTo(map)
-        .bindTooltip(c.name, { sticky: true, className: '' });
-    });
+    // US states shading
+    const visitedStates = new Set(['California', 'New York', 'Pennsylvania', 'Virginia', 'Maryland', 'New Jersey', 'Florida', 'Texas', 'Georgia', 'North Carolina']);
+    fetch('https://cdn.jsdelivr.net/npm/us-atlas@3/states-10m.json')
+      .then(r => r.json())
+      .then(us => {
+        const statesGeo = topojson.feature(us, us.objects.states);
+        // us-atlas doesn't include names in the topojson, use a FIPS lookup
+        const fipsToName = {
+          '01':'Alabama','02':'Alaska','04':'Arizona','05':'Arkansas','06':'California',
+          '08':'Colorado','09':'Connecticut','10':'Delaware','11':'District of Columbia',
+          '12':'Florida','13':'Georgia','15':'Hawaii','16':'Idaho','17':'Illinois',
+          '18':'Indiana','19':'Iowa','20':'Kansas','21':'Kentucky','22':'Louisiana',
+          '23':'Maine','24':'Maryland','25':'Massachusetts','26':'Michigan','27':'Minnesota',
+          '28':'Mississippi','29':'Missouri','30':'Montana','31':'Nebraska','32':'Nevada',
+          '33':'New Hampshire','34':'New Jersey','35':'New Mexico','36':'New York',
+          '37':'North Carolina','38':'North Dakota','39':'Ohio','40':'Oklahoma','41':'Oregon',
+          '42':'Pennsylvania','44':'Rhode Island','45':'South Carolina','46':'South Dakota',
+          '47':'Tennessee','48':'Texas','49':'Utah','50':'Vermont','51':'Virginia',
+          '53':'Washington','54':'West Virginia','55':'Wisconsin','56':'Wyoming'
+        };
+        L.geoJSON(statesGeo, {
+          style: feature => {
+            const fips = String(feature.id).padStart(2, '0');
+            const name = fipsToName[fips];
+            const visited = visitedStates.has(name);
+            return {
+              fillColor:   visited ? '#d9a851' : 'transparent',
+              fillOpacity: visited ? 0.4 : 0,
+              color:       visited ? '#d9a851' : 'transparent',
+              weight:      visited ? 1 : 0,
+            };
+          },
+          onEachFeature: (feature, layer) => {
+            const fips = String(feature.id).padStart(2, '0');
+            const name = fipsToName[fips];
+            if (visitedStates.has(name)) {
+              layer.bindTooltip(name, { sticky: true, className: '' });
+              layer.on('mouseover', function() { this.setStyle({ fillOpacity: 0.6 }); });
+              layer.on('mouseout',  function() { this.setStyle({ fillOpacity: 0.4 }); });
+            }
+          }
+        }).addTo(map);
+      });
   });
 </script>
 </body>
