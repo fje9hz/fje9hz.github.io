@@ -1,34 +1,78 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mustafa Ali — Portfolio</title>
+<title>Mustafa Ali</title>
 <style>
   :root {
     --bg: #14181f;
     --bg-alt: #1b212b;
+    --bg-card: #1f2633;
     --text: #f3efe6;
-    --text-dim: #b9b6ac;
+    --text-dim: #9a9790;
     --accent: #d9a851;
+    --accent-dim: rgba(217, 168, 81, 0.15);
     --border: #2a313d;
+    --live: #4caf7d;
+  }
+
+  [data-theme="light"] {
+    --bg: #f7f4ef;
+    --bg-alt: #edeae4;
+    --bg-card: #e8e4dc;
+    --text: #1a1d22;
+    --text-dim: #6b6860;
+    --accent: #b8852a;
+    --accent-dim: rgba(184, 133, 42, 0.12);
+    --border: #d0ccc4;
+    --live: #3a9e68;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
-
   html { scroll-behavior: smooth; }
 
   body {
     background: var(--bg);
     color: var(--text);
     font-family: 'Helvetica Neue', Arial, sans-serif;
-    line-height: 1.6;
+    line-height: 1.65;
+    transition: background 0.25s, color 0.25s;
   }
 
-  .wrap {
-    max-width: 880px;
-    margin: 0 auto;
-    padding: 0 24px;
+  /* Ticker */
+  .ticker-wrap {
+    background: var(--bg-alt);
+    border-bottom: 1px solid var(--border);
+    overflow: hidden;
+    padding: 10px 0;
+  }
+
+  .ticker-track {
+    display: flex;
+    white-space: nowrap;
+    animation: ticker 38s linear infinite;
+    width: max-content;
+  }
+
+  .ticker-track span {
+    font-size: 0.82rem;
+    color: var(--text-dim);
+    padding: 0 32px;
+    letter-spacing: 0.01em;
+  }
+
+  .ticker-track span::before {
+    content: "◆";
+    margin-right: 12px;
+    color: var(--accent);
+    font-size: 0.6rem;
+    vertical-align: middle;
+  }
+
+  @keyframes ticker {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
   }
 
   /* Nav */
@@ -36,20 +80,28 @@
     position: sticky;
     top: 0;
     z-index: 10;
-    background: rgba(20, 24, 31, 0.85);
-    backdrop-filter: blur(8px);
+    background: rgba(20, 24, 31, 0.88);
+    backdrop-filter: blur(10px);
     border-bottom: 1px solid var(--border);
+    transition: background 0.25s;
   }
 
-  nav .wrap {
+  [data-theme="light"] nav {
+    background: rgba(247, 244, 239, 0.88);
+  }
+
+  nav .inner {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 24px;
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    height: 64px;
+    justify-content: space-between;
+    height: 62px;
   }
 
   nav .nav-name {
-    font-family: Georgia, 'Times New Roman', serif;
+    font-family: Georgia, serif;
     font-style: italic;
     font-size: 1.1rem;
     color: var(--accent);
@@ -59,53 +111,82 @@
     display: flex;
     gap: 28px;
     list-style: none;
+    align-items: center;
   }
 
   nav a {
     color: var(--text-dim);
     text-decoration: none;
-    font-size: 0.92rem;
+    font-size: 0.9rem;
     letter-spacing: 0.02em;
-    transition: color 0.2s ease;
+    transition: color 0.2s;
   }
 
   nav a:hover { color: var(--accent); }
 
+  .theme-btn {
+    background: none;
+    border: 1px solid var(--border);
+    color: var(--text-dim);
+    font-size: 0.8rem;
+    padding: 5px 12px;
+    border-radius: 999px;
+    cursor: pointer;
+    letter-spacing: 0.05em;
+    transition: all 0.2s;
+  }
+
+  .theme-btn:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  /* Wrap */
+  .wrap {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
   /* Hero */
   header.hero {
-    min-height: 86vh;
+    min-height: 84vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding-top: 64px;
+    padding-top: 40px;
+  }
+
+  .hero-label {
+    font-size: 0.8rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-bottom: 14px;
   }
 
   header.hero h1 {
     font-family: Georgia, 'Times New Roman', serif;
     font-style: italic;
     font-weight: 400;
-    font-size: clamp(2.8rem, 8vw, 5.2rem);
+    font-size: clamp(3rem, 8.5vw, 5.6rem);
     color: var(--text);
-    letter-spacing: -0.01em;
-  }
-
-  header.hero .subtitle {
-    margin-top: 14px;
-    font-size: 1.25rem;
-    color: var(--accent);
-    font-weight: 500;
+    letter-spacing: -0.015em;
+    line-height: 1.05;
   }
 
   header.hero .identity {
-    margin-top: 12px;
+    margin-top: 18px;
     font-size: 1.05rem;
     color: var(--text-dim);
+    max-width: 480px;
   }
 
   .hero-links {
-    margin-top: 32px;
+    margin-top: 34px;
     display: flex;
-    gap: 16px;
+    flex-wrap: wrap;
+    gap: 12px;
   }
 
   .btn {
@@ -113,10 +194,11 @@
     padding: 11px 22px;
     border-radius: 6px;
     text-decoration: none;
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     font-weight: 600;
     transition: all 0.2s ease;
     border: 1px solid transparent;
+    cursor: pointer;
   }
 
   .btn-primary {
@@ -125,13 +207,14 @@
   }
 
   .btn-primary:hover {
-    background: #e8bb6b;
+    filter: brightness(1.12);
     transform: translateY(-2px);
   }
 
   .btn-outline {
     border: 1px solid var(--border);
     color: var(--text);
+    background: none;
   }
 
   .btn-outline:hover {
@@ -142,27 +225,59 @@
 
   /* Sections */
   section {
-    padding: 90px 0;
+    padding: 88px 0;
     border-top: 1px solid var(--border);
   }
 
-  section h2 {
-    font-size: 0.85rem;
-    letter-spacing: 0.18em;
+  .section-label {
+    font-size: 0.78rem;
+    letter-spacing: 0.2em;
     text-transform: uppercase;
     color: var(--accent);
     margin-bottom: 36px;
   }
 
-  /* Projects */
+  /* Status card */
+  .status-card {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: var(--bg-alt);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--live);
+    border-radius: 8px;
+    padding: 16px 20px;
+    margin-bottom: 28px;
+    font-size: 0.92rem;
+    color: var(--text-dim);
+  }
+
+  .live-dot {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: var(--live);
+    flex-shrink: 0;
+    box-shadow: 0 0 0 0 rgba(76, 175, 125, 0.5);
+    animation: pulse 2.2s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(76, 175, 125, 0.4); }
+    50%       { box-shadow: 0 0 0 6px rgba(76, 175, 125, 0); }
+  }
+
+  .status-card strong { color: var(--text); }
+
+  /* Project grid */
   .project-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 22px;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px;
   }
 
   .card {
-    background: var(--bg-alt);
+    background: var(--bg-card);
     border: 1px solid var(--border);
     border-radius: 10px;
     padding: 26px;
@@ -174,19 +289,28 @@
   .card:hover {
     transform: translateY(-4px);
     border-color: var(--accent);
-    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.35);
+    box-shadow: 0 14px 32px rgba(0,0,0,0.28);
+  }
+
+  [data-theme="light"] .card:hover {
+    box-shadow: 0 14px 32px rgba(0,0,0,0.1);
   }
 
   .card h3 {
+    font-family: Georgia, serif;
+    font-style: italic;
     font-size: 1.15rem;
+    font-weight: 400;
     margin-bottom: 8px;
+    color: var(--text);
   }
 
   .card p.desc {
     color: var(--text-dim);
-    font-size: 0.93rem;
+    font-size: 0.91rem;
     flex-grow: 1;
-    margin-bottom: 16px;
+    margin-bottom: 18px;
+    line-height: 1.6;
   }
 
   .tags {
@@ -198,26 +322,31 @@
 
   .tag {
     font-size: 0.72rem;
-    background: rgba(217, 168, 81, 0.12);
+    background: var(--accent-dim);
     color: var(--accent);
     padding: 4px 10px;
     border-radius: 999px;
-    border: 1px solid rgba(217, 168, 81, 0.3);
+    border: 1px solid rgba(217, 168, 81, 0.25);
     letter-spacing: 0.02em;
+  }
+
+  [data-theme="light"] .tag {
+    border-color: rgba(184, 133, 42, 0.3);
   }
 
   .card-links {
     display: flex;
-    gap: 14px;
+    gap: 16px;
+    margin-top: auto;
   }
 
   .card-links a {
     color: var(--text);
-    font-size: 0.88rem;
+    font-size: 0.86rem;
     text-decoration: none;
     border-bottom: 1px solid var(--border);
     padding-bottom: 2px;
-    transition: color 0.2s ease, border-color 0.2s ease;
+    transition: color 0.2s, border-color 0.2s;
   }
 
   .card-links a:hover {
@@ -226,95 +355,176 @@
   }
 
   .card.placeholder {
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    color: var(--text-dim);
     border-style: dashed;
-  }
-
-  .card.placeholder .icon {
-    font-size: 1.6rem;
-    margin-bottom: 10px;
-    opacity: 0.6;
+    align-items: flex-start;
+    justify-content: space-between;
+    min-height: 180px;
   }
 
   .card.placeholder h3 {
     color: var(--text-dim);
-    font-weight: 500;
   }
 
   .card.placeholder p.desc {
-    font-size: 0.85rem;
+    font-size: 0.84rem;
+  }
+
+  .placeholder-badge {
+    font-size: 0.7rem;
+    padding: 3px 8px;
+    border-radius: 999px;
+    background: rgba(217, 168, 81, 0.08);
+    color: var(--accent);
+    border: 1px solid rgba(217, 168, 81, 0.2);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    display: inline-block;
   }
 
   /* About */
-  .about-text {
-    max-width: 640px;
-    color: var(--text-dim);
-    font-size: 1.05rem;
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: start;
   }
 
-  .about-text strong {
-    color: var(--text);
-    font-weight: 600;
+  .about-text p {
+    color: var(--text-dim);
+    font-size: 1rem;
+    margin-bottom: 16px;
   }
+
+  .about-text strong { color: var(--text); }
+
+  .about-aside h4 {
+    font-size: 0.78rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 14px;
+  }
+
+  .about-aside ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .about-aside li {
+    font-size: 0.9rem;
+    color: var(--text-dim);
+    padding-left: 14px;
+    position: relative;
+  }
+
+  .about-aside li::before {
+    content: "→";
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-size: 0.8rem;
+  }
+
+  .about-aside li strong { color: var(--text); }
 
   /* Contact */
+  .contact-intro {
+    color: var(--text-dim);
+    font-size: 1rem;
+    max-width: 460px;
+    margin-bottom: 28px;
+  }
+
   .contact-row {
     display: flex;
     flex-wrap: wrap;
-    gap: 16px;
+    gap: 12px;
   }
 
   footer {
     text-align: center;
-    padding: 30px 0;
+    padding: 28px 0;
     color: var(--text-dim);
-    font-size: 0.82rem;
+    font-size: 0.8rem;
     border-top: 1px solid var(--border);
   }
 
-  @media (max-width: 600px) {
-    nav ul { gap: 16px; }
-    nav a { font-size: 0.82rem; }
+  @media (max-width: 640px) {
+    nav ul { gap: 14px; }
+    nav a { font-size: 0.8rem; }
     section { padding: 60px 0; }
+    .about-grid { grid-template-columns: 1fr; gap: 36px; }
     .hero-links { flex-direction: column; }
-    .btn { text-align: center; }
   }
 </style>
 </head>
 <body>
 
+<!-- Ticker -->
+<div class="ticker-wrap" aria-hidden="true">
+  <div class="ticker-track" id="ticker">
+    <span>Data Science + Economics @ UVA</span>
+    <span>Building at the intersection of sports and data</span>
+    <span>Open to summer 2026 internships</span>
+    <span>Co-founder of Zindabad</span>
+    <span>Professional Development Chair — UVA Data Science Council</span>
+    <span>Interested in quantitative finance</span>
+    <span>Based in Charlottesville, VA</span>
+    <span>Sports nerd with a spreadsheet for everything</span>
+    <span>Data Science + Economics @ UVA</span>
+    <span>Building at the intersection of sports and data</span>
+    <span>Open to summer 2026 internships</span>
+    <span>Co-founder of Zindabad</span>
+    <span>Professional Development Chair — UVA Data Science Council</span>
+    <span>Interested in quantitative finance</span>
+    <span>Based in Charlottesville, VA</span>
+    <span>Sports nerd with a spreadsheet for everything</span>
+  </div>
+</div>
+
+<!-- Nav -->
 <nav>
-  <div class="wrap">
+  <div class="inner">
     <span class="nav-name">M. Ali</span>
     <ul>
       <li><a href="#projects">Projects</a></li>
       <li><a href="#about">About</a></li>
       <li><a href="#contact">Contact</a></li>
+      <li><button class="theme-btn" id="themeToggle">☀ Light</button></li>
     </ul>
   </div>
 </nav>
 
+<!-- Hero -->
 <div class="wrap">
   <header class="hero">
+    <p class="hero-label">Welcome to</p>
     <h1>Mustafa Ali</h1>
-    <p class="subtitle">Data Science &amp; Economics @ UVA</p>
-    <p class="identity">builder, analyst, sports nerd</p>
+    <p class="identity">Data Science &amp; Economics @ UVA — builder, analyst, sports nerd.</p>
     <div class="hero-links">
-      <a class="btn btn-primary" href="https://www.linkedin.com/in/mustafa-ali-7a15672b4/" target="_blank" rel="noopener">LinkedIn</a>
-      <a class="btn btn-outline" href="https://github.com/fje9hz" target="_blank" rel="noopener">GitHub</a>
+      <a class="btn btn-primary" href="https://www.linkedin.com/in/mustafa-ali-7a15672b4/" target="_blank" rel="noopener">LinkedIn →</a>
+      <a class="btn btn-outline" href="https://github.com/fje9hz" target="_blank" rel="noopener">GitHub →</a>
+      <a class="btn btn-outline" href="mailto:mustafa10ali_@outlook.com">Email →</a>
     </div>
   </header>
 
+  <!-- Projects -->
   <section id="projects">
-    <h2>Projects</h2>
+    <p class="section-label">Projects</p>
+
+    <div class="status-card">
+      <span class="live-dot"></span>
+      <span><strong>Currently building:</strong> Internship application agent — automated job scraping, resume tailoring, and outreach pipeline</span>
+    </div>
+
     <div class="project-grid">
 
       <div class="card">
         <h3>Game Script</h3>
-        <p class="desc">NFL win probability predictor that estimates live win likelihood from in-game state, served through a FastAPI backend with a trained scikit-learn model.</p>
+        <p class="desc">NFL win probability predictor that estimates live win likelihood from real in-game state. Trained a logistic regression and random forest model on play-by-play data, wrapped in a FastAPI backend, and containerized with Docker.</p>
         <div class="tags">
           <span class="tag">Python</span>
           <span class="tag">FastAPI</span>
@@ -328,46 +538,83 @@
       </div>
 
       <div class="card placeholder">
-        <div class="icon">◐</div>
-        <h3>Upcoming Project</h3>
-        <p class="desc">In development. Check back soon.</p>
+        <div>
+          <span class="placeholder-badge">In Development</span>
+          <h3>Coming Soon</h3>
+          <p class="desc">Next project in progress. Check back soon.</p>
+        </div>
       </div>
 
       <div class="card placeholder">
-        <div class="icon">◐</div>
-        <h3>Upcoming Project</h3>
-        <p class="desc">In development. Check back soon.</p>
+        <div>
+          <span class="placeholder-badge">In Development</span>
+          <h3>Coming Soon</h3>
+          <p class="desc">Next project in progress. Check back soon.</p>
+        </div>
       </div>
 
     </div>
   </section>
 
+  <!-- About -->
   <section id="about">
-    <h2>About</h2>
-    <p class="about-text">
-      I'm a <strong>Data Science and Economics</strong> student at the University of Virginia, drawn to problems
-      where numbers and decisions meet — <strong>sports analytics</strong> and <strong>quantitative finance</strong>
-      especially. I like building things that turn messy data into something useful: models, dashboards, tools
-      people actually open more than once. Outside of class, I co-founded <strong>Zindabad</strong>, where I get to
-      apply that same build-and-iterate mindset to something entirely my own.
-    </p>
+    <p class="section-label">About</p>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>
+          I'm a <strong>Data Science and Economics</strong> student at the University of Virginia
+          who likes building things that turn messy data into something actually useful.
+        </p>
+        <p>
+          My interests sit at the overlap of <strong>sports analytics</strong> and
+          <strong>quantitative finance</strong> — places where models and decisions meet in real time.
+          I'm drawn to problems where the analysis has stakes.
+        </p>
+        <p>
+          Outside of coursework, I co-founded <strong>Zindabad</strong>, where I get to apply the
+          same build-and-iterate mindset to something entirely my own.
+        </p>
+      </div>
+      <div class="about-aside">
+        <h4>Involvement</h4>
+        <ul>
+          <li><strong>Professional Development Chair</strong> — UVA School of Data Science Undergraduate Council</li>
+          <li><strong>Technical Lead</strong> — SWAT at UVA</li>
+          <li><strong>Director of Membership</strong> — Pakistani Student Association at UVA</li>
+          <li><strong>Program Director</strong> — MSA Peer Mentorship</li>
+          <li><strong>Tax Education Consultant</strong> — CASH at Madison House</li>
+        </ul>
+      </div>
+    </div>
   </section>
 
+  <!-- Contact -->
   <section id="contact">
-    <h2>Contact</h2>
+    <p class="section-label">Contact</p>
+    <p class="contact-intro">Always open to interesting conversations — whether it's a project, an opportunity, or just sports analytics.</p>
     <div class="contact-row">
-      <a class="btn btn-outline" href="mailto:mustafa10ali_@outlook.com">Email</a>
-      <a class="btn btn-outline" href="https://www.linkedin.com/in/mustafa-ali-7a15672b4/" target="_blank" rel="noopener">LinkedIn</a>
+      <a class="btn btn-primary" href="mailto:mustafa10ali_@outlook.com">Email →</a>
+      <a class="btn btn-outline" href="https://www.linkedin.com/in/mustafa-ali-7a15672b4/" target="_blank" rel="noopener">LinkedIn →</a>
     </div>
   </section>
 </div>
 
 <footer>
-  <p>&copy; <span id="year"></span> Mustafa Ali</p>
+  <p>&copy; <span id="year"></span> Mustafa Ali &nbsp;·&nbsp; Built from scratch</p>
 </footer>
 
 <script>
   document.getElementById('year').textContent = new Date().getFullYear();
+
+  const toggle = document.getElementById('themeToggle');
+  const html = document.documentElement;
+  let dark = true;
+
+  toggle.addEventListener('click', () => {
+    dark = !dark;
+    html.setAttribute('data-theme', dark ? 'dark' : 'light');
+    toggle.textContent = dark ? '☀ Light' : '☾ Dark';
+  });
 </script>
 
 </body>
