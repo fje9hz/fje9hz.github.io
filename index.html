@@ -564,6 +564,89 @@
     border-top: 1px solid var(--border);
   }
 
+  /* Infographic */
+  .infographic-wrap {
+    position: relative;
+    margin-bottom: 18px;
+    border-radius: 6px;
+    overflow: hidden;
+    cursor: pointer;
+    border: 1px solid var(--border);
+  }
+
+  .infographic-wrap img {
+    width: 100%;
+    display: block;
+    transition: filter 0.2s;
+  }
+
+  .infographic-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(20, 24, 31, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+
+  .infographic-overlay span {
+    font-size: 0.82rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    border: 1px solid var(--accent);
+    padding: 7px 16px;
+    border-radius: 4px;
+    text-transform: uppercase;
+  }
+
+  .infographic-wrap:hover .infographic-overlay { opacity: 1; }
+  .infographic-wrap:hover img { filter: brightness(0.7); }
+
+  /* Modal */
+  #infographic-modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    background: rgba(10, 12, 16, 0.92);
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    cursor: zoom-out;
+  }
+
+  #infographic-modal img {
+    max-width: 100%;
+    max-height: 92vh;
+    border-radius: 8px;
+    box-shadow: 0 24px 64px rgba(0,0,0,0.6);
+    cursor: default;
+  }
+
+  #infographic-modal .close-btn {
+    position: fixed;
+    top: 20px;
+    right: 24px;
+    background: none;
+    border: 1px solid var(--border);
+    color: var(--text-dim);
+    font-size: 1.2rem;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+    font-family: inherit;
+  }
+
+  #infographic-modal .close-btn:hover { border-color: var(--accent); color: var(--accent); }
+
   @media (max-width: 720px) {
     nav ul { gap: 14px; }
     nav a { font-size: 0.8rem; }
@@ -710,6 +793,10 @@
           <span class="tag">Python</span>
           <span class="tag">pandas</span>
           <span class="tag">EPA</span>
+        </div>
+        <div class="infographic-wrap" onclick="document.getElementById('infographic-modal').style.display='flex'" title="View infographic">
+          <img src="fourth-down-infographic.png" alt="Fourth Down Fever infographic" />
+          <div class="infographic-overlay"><span>View Full Infographic</span></div>
         </div>
         <div class="card-links">
           <a href="https://github.com/fje9hz/nfl-fourth-down-decision-efficiency" target="_blank" rel="noopener">GitHub →</a>
@@ -915,6 +1002,12 @@
     </div>
   </section>
 
+</div>
+
+<!-- Infographic Modal -->
+<div id="infographic-modal" onclick="this.style.display='none'">
+  <button class="close-btn" onclick="document.getElementById('infographic-modal').style.display='none'">✕</button>
+  <img src="fourth-down-infographic.png" alt="Fourth Down Fever infographic" onclick="event.stopPropagation()" />
 </div>
 
 <footer>
