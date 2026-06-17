@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mustafa Ali</title>
+<title>Mustafa Ali — Portfolio</title>
 <style>
   :root {
     --bg: #14181f;
@@ -12,7 +12,7 @@
     --text: #f3efe6;
     --text-dim: #9a9790;
     --accent: #d9a851;
-    --accent-dim: rgba(217, 168, 81, 0.15);
+    --accent-dim: rgba(217, 168, 81, 0.13);
     --border: #2a313d;
     --live: #4caf7d;
   }
@@ -24,7 +24,7 @@
     --text: #1a1d22;
     --text-dim: #6b6860;
     --accent: #b8852a;
-    --accent-dim: rgba(184, 133, 42, 0.12);
+    --accent-dim: rgba(184, 133, 42, 0.1);
     --border: #d0ccc4;
     --live: #3a9e68;
   }
@@ -45,28 +45,27 @@
     background: var(--bg-alt);
     border-bottom: 1px solid var(--border);
     overflow: hidden;
-    padding: 10px 0;
+    padding: 9px 0;
   }
 
   .ticker-track {
     display: flex;
     white-space: nowrap;
-    animation: ticker 38s linear infinite;
+    animation: ticker 45s linear infinite;
     width: max-content;
   }
 
   .ticker-track span {
-    font-size: 0.82rem;
+    font-size: 0.81rem;
     color: var(--text-dim);
-    padding: 0 32px;
-    letter-spacing: 0.01em;
+    padding: 0 30px;
   }
 
   .ticker-track span::before {
     content: "◆";
     margin-right: 12px;
     color: var(--accent);
-    font-size: 0.6rem;
+    font-size: 0.55rem;
     vertical-align: middle;
   }
 
@@ -80,18 +79,16 @@
     position: sticky;
     top: 0;
     z-index: 10;
-    background: rgba(20, 24, 31, 0.88);
+    background: rgba(20, 24, 31, 0.9);
     backdrop-filter: blur(10px);
     border-bottom: 1px solid var(--border);
     transition: background 0.25s;
   }
 
-  [data-theme="light"] nav {
-    background: rgba(247, 244, 239, 0.88);
-  }
+  [data-theme="light"] nav { background: rgba(247, 244, 239, 0.9); }
 
   nav .inner {
-    max-width: 900px;
+    max-width: 940px;
     margin: 0 auto;
     padding: 0 24px;
     display: flex;
@@ -109,7 +106,7 @@
 
   nav ul {
     display: flex;
-    gap: 28px;
+    gap: 24px;
     list-style: none;
     align-items: center;
   }
@@ -117,7 +114,7 @@
   nav a {
     color: var(--text-dim);
     text-decoration: none;
-    font-size: 0.9rem;
+    font-size: 0.88rem;
     letter-spacing: 0.02em;
     transition: color 0.2s;
   }
@@ -128,24 +125,35 @@
     background: none;
     border: 1px solid var(--border);
     color: var(--text-dim);
-    font-size: 0.8rem;
+    font-size: 0.78rem;
     padding: 5px 12px;
     border-radius: 999px;
     cursor: pointer;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.04em;
     transition: all 0.2s;
+    font-family: inherit;
   }
 
-  .theme-btn:hover {
-    border-color: var(--accent);
-    color: var(--accent);
-  }
+  .theme-btn:hover { border-color: var(--accent); color: var(--accent); }
 
-  /* Wrap */
+  /* Layout */
   .wrap {
-    max-width: 900px;
+    max-width: 940px;
     margin: 0 auto;
     padding: 0 24px;
+  }
+
+  section {
+    padding: 88px 0;
+    border-top: 1px solid var(--border);
+  }
+
+  .section-label {
+    font-size: 0.76rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 36px;
   }
 
   /* Hero */
@@ -154,11 +162,11 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding-top: 40px;
+    padding-top: 36px;
   }
 
   .hero-label {
-    font-size: 0.8rem;
+    font-size: 0.78rem;
     letter-spacing: 0.2em;
     text-transform: uppercase;
     color: var(--text-dim);
@@ -170,7 +178,6 @@
     font-style: italic;
     font-weight: 400;
     font-size: clamp(3rem, 8.5vw, 5.6rem);
-    color: var(--text);
     letter-spacing: -0.015em;
     line-height: 1.05;
   }
@@ -179,7 +186,7 @@
     margin-top: 18px;
     font-size: 1.05rem;
     color: var(--text-dim);
-    max-width: 480px;
+    max-width: 500px;
   }
 
   .hero-links {
@@ -191,51 +198,22 @@
 
   .btn {
     display: inline-block;
-    padding: 11px 22px;
+    padding: 10px 20px;
     border-radius: 6px;
     text-decoration: none;
-    font-size: 0.9rem;
+    font-size: 0.88rem;
     font-weight: 600;
     transition: all 0.2s ease;
     border: 1px solid transparent;
     cursor: pointer;
+    font-family: inherit;
   }
 
-  .btn-primary {
-    background: var(--accent);
-    color: #14181f;
-  }
+  .btn-primary { background: var(--accent); color: #14181f; }
+  .btn-primary:hover { filter: brightness(1.12); transform: translateY(-2px); }
 
-  .btn-primary:hover {
-    filter: brightness(1.12);
-    transform: translateY(-2px);
-  }
-
-  .btn-outline {
-    border: 1px solid var(--border);
-    color: var(--text);
-    background: none;
-  }
-
-  .btn-outline:hover {
-    border-color: var(--accent);
-    color: var(--accent);
-    transform: translateY(-2px);
-  }
-
-  /* Sections */
-  section {
-    padding: 88px 0;
-    border-top: 1px solid var(--border);
-  }
-
-  .section-label {
-    font-size: 0.78rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 36px;
-  }
+  .btn-outline { border: 1px solid var(--border); color: var(--text); background: none; }
+  .btn-outline:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
 
   /* Status card */
   .status-card {
@@ -246,19 +224,18 @@
     border: 1px solid var(--border);
     border-left: 3px solid var(--live);
     border-radius: 8px;
-    padding: 16px 20px;
+    padding: 15px 20px;
     margin-bottom: 28px;
-    font-size: 0.92rem;
+    font-size: 0.91rem;
     color: var(--text-dim);
   }
 
   .live-dot {
-    width: 9px;
-    height: 9px;
+    width: 8px;
+    height: 8px;
     border-radius: 50%;
     background: var(--live);
     flex-shrink: 0;
-    box-shadow: 0 0 0 0 rgba(76, 175, 125, 0.5);
     animation: pulse 2.2s ease-in-out infinite;
   }
 
@@ -272,7 +249,7 @@
   /* Project grid */
   .project-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
     gap: 20px;
   }
 
@@ -283,7 +260,7 @@
     padding: 26px;
     display: flex;
     flex-direction: column;
-    transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+    transition: transform 0.25s, border-color 0.25s, box-shadow 0.25s;
   }
 
   .card:hover {
@@ -292,25 +269,64 @@
     box-shadow: 0 14px 32px rgba(0,0,0,0.28);
   }
 
-  [data-theme="light"] .card:hover {
-    box-shadow: 0 14px 32px rgba(0,0,0,0.1);
+  [data-theme="light"] .card:hover { box-shadow: 0 14px 32px rgba(0,0,0,0.09); }
+
+  .card.featured {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    align-items: start;
   }
+
+  .card.featured:hover { transform: translateY(-3px); }
+
+  .card-left {}
+  .card-right {}
 
   .card h3 {
     font-family: Georgia, serif;
     font-style: italic;
-    font-size: 1.15rem;
     font-weight: 400;
-    margin-bottom: 8px;
-    color: var(--text);
+    font-size: 1.2rem;
+    margin-bottom: 6px;
+  }
+
+  .card-meta {
+    font-size: 0.78rem;
+    color: var(--text-dim);
+    margin-bottom: 12px;
+    letter-spacing: 0.02em;
   }
 
   .card p.desc {
     color: var(--text-dim);
     font-size: 0.91rem;
-    flex-grow: 1;
-    margin-bottom: 18px;
     line-height: 1.6;
+    margin-bottom: 16px;
+  }
+
+  .stat-row {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 18px;
+  }
+
+  .stat {
+    text-align: left;
+  }
+
+  .stat .val {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--accent);
+    line-height: 1;
+  }
+
+  .stat .lbl {
+    font-size: 0.72rem;
+    color: var(--text-dim);
+    margin-top: 3px;
   }
 
   .tags {
@@ -321,18 +337,16 @@
   }
 
   .tag {
-    font-size: 0.72rem;
+    font-size: 0.71rem;
     background: var(--accent-dim);
     color: var(--accent);
     padding: 4px 10px;
     border-radius: 999px;
-    border: 1px solid rgba(217, 168, 81, 0.25);
+    border: 1px solid rgba(217, 168, 81, 0.22);
     letter-spacing: 0.02em;
   }
 
-  [data-theme="light"] .tag {
-    border-color: rgba(184, 133, 42, 0.3);
-  }
+  [data-theme="light"] .tag { border-color: rgba(184, 133, 42, 0.28); }
 
   .card-links {
     display: flex;
@@ -342,51 +356,147 @@
 
   .card-links a {
     color: var(--text);
-    font-size: 0.86rem;
+    font-size: 0.85rem;
     text-decoration: none;
     border-bottom: 1px solid var(--border);
     padding-bottom: 2px;
     transition: color 0.2s, border-color 0.2s;
   }
 
-  .card-links a:hover {
+  .card-links a:hover { color: var(--accent); border-color: var(--accent); }
+
+  /* Bullet list in cards */
+  .card-bullets {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 18px;
+  }
+
+  .card-bullets li {
+    font-size: 0.88rem;
+    color: var(--text-dim);
+    padding-left: 14px;
+    position: relative;
+    line-height: 1.5;
+  }
+
+  .card-bullets li::before {
+    content: "→";
+    position: absolute;
+    left: 0;
     color: var(--accent);
-    border-color: var(--accent);
+    font-size: 0.75rem;
   }
 
-  .card.placeholder {
-    border-style: dashed;
-    align-items: flex-start;
-    justify-content: space-between;
-    min-height: 180px;
+  /* Experience */
+  .exp-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
   }
 
-  .card.placeholder h3 {
+  .exp-item {
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    gap: 32px;
+    padding: 32px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .exp-item:last-child { border-bottom: none; }
+
+  .exp-meta {
+    padding-top: 2px;
+  }
+
+  .exp-meta .period {
+    font-size: 0.78rem;
+    color: var(--text-dim);
+    letter-spacing: 0.02em;
+    margin-bottom: 4px;
+  }
+
+  .exp-meta .company {
+    font-size: 0.9rem;
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: 2px;
+  }
+
+  .exp-meta .location {
+    font-size: 0.78rem;
     color: var(--text-dim);
   }
 
-  .card.placeholder p.desc {
-    font-size: 0.84rem;
+  .exp-content h3 {
+    font-size: 1.05rem;
+    font-weight: 600;
+    margin-bottom: 10px;
   }
 
-  .placeholder-badge {
-    font-size: 0.7rem;
-    padding: 3px 8px;
-    border-radius: 999px;
-    background: rgba(217, 168, 81, 0.08);
+  .exp-content ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+  }
+
+  .exp-content li {
+    font-size: 0.9rem;
+    color: var(--text-dim);
+    padding-left: 16px;
+    position: relative;
+    line-height: 1.5;
+  }
+
+  .exp-content li::before {
+    content: "→";
+    position: absolute;
+    left: 0;
     color: var(--accent);
-    border: 1px solid rgba(217, 168, 81, 0.2);
-    letter-spacing: 0.08em;
+    font-size: 0.75rem;
+    top: 1px;
+  }
+
+  .exp-content li strong { color: var(--text); }
+
+  /* Skills */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 24px;
+  }
+
+  .skill-group h4 {
+    font-size: 0.76rem;
+    letter-spacing: 0.14em;
     text-transform: uppercase;
+    color: var(--accent);
     margin-bottom: 12px;
-    display: inline-block;
+  }
+
+  .skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .skill-tag {
+    font-size: 0.8rem;
+    background: var(--bg-alt);
+    color: var(--text-dim);
+    padding: 5px 12px;
+    border-radius: 6px;
+    border: 1px solid var(--border);
   }
 
   /* About */
   .about-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 48px;
+    grid-template-columns: 3fr 2fr;
+    gap: 56px;
     align-items: start;
   }
 
@@ -394,17 +504,21 @@
     color: var(--text-dim);
     font-size: 1rem;
     margin-bottom: 16px;
+    line-height: 1.72;
   }
 
   .about-text strong { color: var(--text); }
 
   .about-aside h4 {
-    font-size: 0.78rem;
-    letter-spacing: 0.15em;
+    font-size: 0.76rem;
+    letter-spacing: 0.16em;
     text-transform: uppercase;
     color: var(--accent);
-    margin-bottom: 14px;
+    margin-bottom: 16px;
+    margin-top: 28px;
   }
+
+  .about-aside h4:first-child { margin-top: 0; }
 
   .about-aside ul {
     list-style: none;
@@ -414,10 +528,11 @@
   }
 
   .about-aside li {
-    font-size: 0.9rem;
+    font-size: 0.88rem;
     color: var(--text-dim);
     padding-left: 14px;
     position: relative;
+    line-height: 1.5;
   }
 
   .about-aside li::before {
@@ -425,7 +540,7 @@
     position: absolute;
     left: 0;
     color: var(--accent);
-    font-size: 0.8rem;
+    font-size: 0.75rem;
   }
 
   .about-aside li strong { color: var(--text); }
@@ -434,15 +549,12 @@
   .contact-intro {
     color: var(--text-dim);
     font-size: 1rem;
-    max-width: 460px;
+    max-width: 480px;
     margin-bottom: 28px;
+    line-height: 1.7;
   }
 
-  .contact-row {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 12px;
-  }
+  .contact-row { display: flex; flex-wrap: wrap; gap: 12px; }
 
   footer {
     text-align: center;
@@ -452,12 +564,15 @@
     border-top: 1px solid var(--border);
   }
 
-  @media (max-width: 640px) {
+  @media (max-width: 720px) {
     nav ul { gap: 14px; }
     nav a { font-size: 0.8rem; }
     section { padding: 60px 0; }
+    .card.featured { grid-template-columns: 1fr; gap: 0; }
+    .card-right { margin-top: 16px; }
     .about-grid { grid-template-columns: 1fr; gap: 36px; }
-    .hero-links { flex-direction: column; }
+    .exp-item { grid-template-columns: 1fr; gap: 8px; }
+    .hero-links { flex-direction: column; align-items: flex-start; }
   }
 </style>
 </head>
@@ -465,23 +580,25 @@
 
 <!-- Ticker -->
 <div class="ticker-wrap" aria-hidden="true">
-  <div class="ticker-track" id="ticker">
+  <div class="ticker-track">
     <span>Data Science + Economics @ UVA</span>
-    <span>Building at the intersection of sports and data</span>
+    <span>Sports analytics & quantitative finance</span>
     <span>Open to summer 2026 internships</span>
     <span>Co-founder of Zindabad</span>
     <span>Professional Development Chair — UVA Data Science Council</span>
-    <span>Interested in quantitative finance</span>
-    <span>Based in Charlottesville, VA</span>
-    <span>Sports nerd with a spreadsheet for everything</span>
+    <span>88% sales conversion vs. 33% territory average</span>
+    <span>Washington Commanders fan</span>
+    <span>Research interest: data ethics & responsible AI</span>
+    <span>Northern Virginia native, based in Charlottesville</span>
     <span>Data Science + Economics @ UVA</span>
-    <span>Building at the intersection of sports and data</span>
+    <span>Sports analytics & quantitative finance</span>
     <span>Open to summer 2026 internships</span>
     <span>Co-founder of Zindabad</span>
     <span>Professional Development Chair — UVA Data Science Council</span>
-    <span>Interested in quantitative finance</span>
-    <span>Based in Charlottesville, VA</span>
-    <span>Sports nerd with a spreadsheet for everything</span>
+    <span>88% sales conversion vs. 33% territory average</span>
+    <span>Washington Commanders fan</span>
+    <span>Research interest: data ethics & responsible AI</span>
+    <span>Northern Virginia native, based in Charlottesville</span>
   </div>
 </div>
 
@@ -491,6 +608,8 @@
     <span class="nav-name">M. Ali</span>
     <ul>
       <li><a href="#projects">Projects</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#skills">Skills</a></li>
       <li><a href="#about">About</a></li>
       <li><a href="#contact">Contact</a></li>
       <li><button class="theme-btn" id="themeToggle">☀ Light</button></li>
@@ -498,8 +617,9 @@
   </div>
 </nav>
 
-<!-- Hero -->
 <div class="wrap">
+
+  <!-- Hero -->
   <header class="hero">
     <p class="hero-label">Welcome to</p>
     <h1>Mustafa Ali</h1>
@@ -522,37 +642,214 @@
 
     <div class="project-grid">
 
+      <!-- Featured: Game Script -->
+      <div class="card featured">
+        <div class="card-left">
+          <h3>Game Script</h3>
+          <p class="card-meta">NFL Win Probability Predictor</p>
+          <p class="desc">Full-stack ML app that predicts NFL win probability from real in-game state — spread, moneyline, weather, rest days, team stats, and more. Three prediction modes with chronological train/test split to prevent data leakage. Interactive UI with team colors, donut chart, and example matchup presets.</p>
+          <div class="card-links">
+            <a href="https://nfl-win-probability.onrender.com" target="_blank" rel="noopener">Live Demo →</a>
+            <a href="https://github.com/fje9hz/nfl-ml-project" target="_blank" rel="noopener">GitHub →</a>
+          </div>
+        </div>
+        <div class="card-right">
+          <div class="stat-row">
+            <div class="stat"><div class="val">68%</div><div class="lbl">Accuracy (Combined)</div></div>
+            <div class="stat"><div class="val">0.728</div><div class="lbl">ROC AUC</div></div>
+            <div class="stat"><div class="val">4,175</div><div class="lbl">Historical Games</div></div>
+          </div>
+          <ul class="card-bullets">
+            <li>Market-aware mode: spread, moneyline, total as features</li>
+            <li>Team-stat mode: rest days, weather, roof/surface, division matchup</li>
+            <li>FastAPI backend · Docker · deployed on Render with GitHub CI/CD</li>
+            <li>pytest unit tests · model artifacts saved with joblib</li>
+          </ul>
+          <div class="tags">
+            <span class="tag">Python</span>
+            <span class="tag">scikit-learn</span>
+            <span class="tag">FastAPI</span>
+            <span class="tag">Docker</span>
+            <span class="tag">Render</span>
+            <span class="tag">pandas</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- E-Commerce Warehouse -->
       <div class="card">
-        <h3>Game Script</h3>
-        <p class="desc">NFL win probability predictor that estimates live win likelihood from real in-game state. Trained a logistic regression and random forest model on play-by-play data, wrapped in a FastAPI backend, and containerized with Docker.</p>
+        <h3>E-Commerce Analytics Warehouse</h3>
+        <p class="card-meta">Feb 2026 – Mar 2026</p>
+        <p class="desc">4-layer PostgreSQL warehouse built on Kimball star schema with SCD Type 2 history tracking, idempotent ETL, and data quality checks. ~100k orders, 25k customers, 2 years of synthetic data.</p>
+        <ul class="card-bullets">
+          <li>6 analyst-grade SQL queries: cohort retention, RFM, funnel, LTV</li>
+          <li>Raw → staging → marts → analysis layer architecture</li>
+        </ul>
+        <div class="tags">
+          <span class="tag">PostgreSQL</span>
+          <span class="tag">Python</span>
+          <span class="tag">SQL</span>
+          <span class="tag">ETL</span>
+          <span class="tag">Kimball</span>
+        </div>
+      </div>
+
+      <!-- NFL 4th Down -->
+      <div class="card">
+        <h3>NFL 4th Down Decision Efficiency</h3>
+        <p class="card-meta">Nov 2025 – Dec 2025</p>
+        <p class="desc">Analyzed 1,500+ NFL play-by-play records from 2009–2016. Computed EPA and conversion rates, and published an infographic for a general audience.</p>
+        <ul class="card-bullets">
+          <li>Go-for-it rates increased 40%+ over 7 seasons while efficiency held stable</li>
+          <li>Conversion rates: 60–70% across situations</li>
+        </ul>
         <div class="tags">
           <span class="tag">Python</span>
-          <span class="tag">FastAPI</span>
-          <span class="tag">scikit-learn</span>
-          <span class="tag">Docker</span>
-        </div>
-        <div class="card-links">
-          <a href="https://nfl-win-probability.onrender.com" target="_blank" rel="noopener">Live Demo →</a>
-          <a href="https://github.com/fje9hz/nfl-ml-project" target="_blank" rel="noopener">GitHub →</a>
+          <span class="tag">pandas</span>
+          <span class="tag">EPA</span>
         </div>
       </div>
 
-      <div class="card placeholder">
-        <div>
-          <span class="placeholder-badge">In Development</span>
-          <h3>Coming Soon</h3>
-          <p class="desc">Next project in progress. Check back soon.</p>
+      <!-- Stock Valuation -->
+      <div class="card">
+        <h3>Stock Valuation & Market Analysis</h3>
+        <p class="card-meta">Jan 2025 – May 2025 · DS & Analytics Club @ UVA</p>
+        <p class="desc">4-person team analysis of 12 publicly-traded companies across Technology, Consumer, Healthcare, and Finance sectors. 15+ metrics per company.</p>
+        <ul class="card-bullets">
+          <li>Identified 6 stocks trading 15–40% below sector averages</li>
+          <li>Top picks: META, MSFT, PFE — P/E, EV/EBITDA, YoY revenue growth</li>
+        </ul>
+        <div class="tags">
+          <span class="tag">Python</span>
+          <span class="tag">Excel</span>
+          <span class="tag">Valuation</span>
         </div>
       </div>
 
-      <div class="card placeholder">
-        <div>
-          <span class="placeholder-badge">In Development</span>
-          <h3>Coming Soon</h3>
-          <p class="desc">Next project in progress. Check back soon.</p>
+    </div>
+  </section>
+
+  <!-- Experience -->
+  <section id="experience">
+    <p class="section-label">Experience</p>
+    <div class="exp-list">
+
+      <div class="exp-item">
+        <div class="exp-meta">
+          <p class="period">Jul 2024 – Sep 2024</p>
+          <p class="company">DataDepth</p>
+          <p class="location">Lorton, VA</p>
+        </div>
+        <div class="exp-content">
+          <h3>Financial & Data Analyst</h3>
+          <ul>
+            <li>Built automated data pipelines integrating API sources using Python and SQL</li>
+            <li>Designed <strong>3 Power BI dashboards</strong> tracking <strong>25+ KPIs</strong> across business units</li>
+            <li>Developed 5-year financial model with base/bull/bear scenarios and sensitivity analysis to support seed fundraising</li>
+            <li>Analyzed P&amp;L structure and unit economics across 10+ business categories</li>
+          </ul>
         </div>
       </div>
 
+      <div class="exp-item">
+        <div class="exp-meta">
+          <p class="period">Jun 2024 – Aug 2025</p>
+          <p class="company">Renewal by Andersen</p>
+          <p class="location">VA, DC, MD</p>
+        </div>
+        <div class="exp-content">
+          <h3>Marketing & Sales Representative</h3>
+          <ul>
+            <li>Generated <strong>$200,000+</strong> in closed sales in 2025</li>
+            <li>Achieved <strong>88% consultation-to-sale conversion</strong> vs. 33% territory average</li>
+            <li>Identified 72-hour appointment insight through data analysis — <strong>2.7× conversion lift</strong></li>
+            <li>100+ customer interactions across 50+ events across VA, DC, and MD</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-meta">
+          <p class="period">Jan 2025 – May 2025</p>
+          <p class="company">CASH at Madison House</p>
+          <p class="location">Charlottesville, VA</p>
+        </div>
+        <div class="exp-content">
+          <h3>Volunteer Tax Education Consultant</h3>
+          <ul>
+            <li>Provided free tax education and filing support to underserved community members through the MILE Program</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Skills -->
+  <section id="skills">
+    <p class="section-label">Skills</p>
+    <div class="skills-grid">
+      <div class="skill-group">
+        <h4>Languages</h4>
+        <div class="skill-tags">
+          <span class="skill-tag">Python</span>
+          <span class="skill-tag">SQL</span>
+          <span class="skill-tag">R</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h4>ML & Analytics</h4>
+        <div class="skill-tags">
+          <span class="skill-tag">scikit-learn</span>
+          <span class="skill-tag">pandas</span>
+          <span class="skill-tag">NumPy</span>
+          <span class="skill-tag">Random Forest</span>
+          <span class="skill-tag">Logistic Regression</span>
+          <span class="skill-tag">ROC AUC</span>
+          <span class="skill-tag">Feature Engineering</span>
+          <span class="skill-tag">EDA</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h4>Data Engineering</h4>
+        <div class="skill-tags">
+          <span class="skill-tag">PostgreSQL</span>
+          <span class="skill-tag">ETL</span>
+          <span class="skill-tag">Kimball Star Schema</span>
+          <span class="skill-tag">SCD Type 2</span>
+          <span class="skill-tag">API Integration</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h4>Backend & Deployment</h4>
+        <div class="skill-tags">
+          <span class="skill-tag">FastAPI</span>
+          <span class="skill-tag">Docker</span>
+          <span class="skill-tag">Render</span>
+          <span class="skill-tag">GitHub CI/CD</span>
+          <span class="skill-tag">REST APIs</span>
+          <span class="skill-tag">pytest</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h4>BI & Visualization</h4>
+        <div class="skill-tags">
+          <span class="skill-tag">Power BI</span>
+          <span class="skill-tag">Tableau</span>
+          <span class="skill-tag">Excel</span>
+          <span class="skill-tag">matplotlib</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h4>Finance</h4>
+        <div class="skill-tags">
+          <span class="skill-tag">Financial Modeling</span>
+          <span class="skill-tag">Scenario Analysis</span>
+          <span class="skill-tag">P&amp;L</span>
+          <span class="skill-tag">P/E · EV/EBITDA</span>
+          <span class="skill-tag">Sensitivity Analysis</span>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -562,27 +859,38 @@
     <div class="about-grid">
       <div class="about-text">
         <p>
-          I'm a <strong>Data Science and Economics</strong> student at the University of Virginia
-          who likes building things that turn messy data into something actually useful.
+          I'm a <strong>Data Science and Economics</strong> student at the University of Virginia — not a traditional finance student, not a pure CS student. The combination is intentional: I'm drawn to problems where models and decisions have real stakes.
         </p>
         <p>
-          My interests sit at the overlap of <strong>sports analytics</strong> and
-          <strong>quantitative finance</strong> — places where models and decisions meet in real time.
-          I'm drawn to problems where the analysis has stakes.
+          Most of my work sits at the overlap of <strong>sports analytics</strong> and <strong>quantitative finance</strong>. I like building things that actually run — the projects on this site are self-directed, deployed, and tested, not just class assignments.
         </p>
         <p>
-          Outside of coursework, I co-founded <strong>Zindabad</strong>, where I get to apply the
-          same build-and-iterate mindset to something entirely my own.
+          I'm also genuinely interested in <strong>data ethics and responsible AI</strong> — it's the kind of question that shows up everywhere once you start looking. I'm pursuing undergraduate research in this area through UVA's School of Data Science.
+        </p>
+        <p>
+          Outside of all that, I co-founded <strong>Zindabad</strong>, a streetwear brand rooted in South Asian diaspora culture. Different kind of build, same obsession with getting the details right.
         </p>
       </div>
       <div class="about-aside">
+        <h4>Education</h4>
+        <ul>
+          <li><strong>BS Data Science + BA Economics</strong> — University of Virginia</li>
+          <li>Business Essentials in Finance — UVA McIntire (May 2025)</li>
+          <li>GPA: 3.2 | Class of 2028</li>
+        </ul>
         <h4>Involvement</h4>
         <ul>
-          <li><strong>Professional Development Chair</strong> — UVA School of Data Science Undergraduate Council</li>
+          <li><strong>Professional Development Chair</strong> — UVA SDS Undergraduate Council</li>
           <li><strong>Technical Lead</strong> — SWAT at UVA</li>
-          <li><strong>Director of Membership</strong> — Pakistani Student Association at UVA</li>
           <li><strong>Program Director</strong> — MSA Peer Mentorship</li>
-          <li><strong>Tax Education Consultant</strong> — CASH at Madison House</li>
+          <li><strong>Director of Membership</strong> — Pakistani Student Association</li>
+        </ul>
+        <h4>Interests</h4>
+        <ul>
+          <li>NFL analytics (Commanders fan)</li>
+          <li>Causal inference & data ethics</li>
+          <li>Quantitative finance</li>
+          <li>Human-AI interaction</li>
         </ul>
       </div>
     </div>
@@ -591,12 +899,13 @@
   <!-- Contact -->
   <section id="contact">
     <p class="section-label">Contact</p>
-    <p class="contact-intro">Always open to interesting conversations — whether it's a project, an opportunity, or just sports analytics.</p>
+    <p class="contact-intro">Always open to interesting conversations — whether it's a role, a project idea, or just sports analytics. Best reached by email.</p>
     <div class="contact-row">
       <a class="btn btn-primary" href="mailto:mustafa10ali_@outlook.com">Email →</a>
       <a class="btn btn-outline" href="https://www.linkedin.com/in/mustafa-ali-7a15672b4/" target="_blank" rel="noopener">LinkedIn →</a>
     </div>
   </section>
+
 </div>
 
 <footer>
