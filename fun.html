@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,25 +8,14 @@
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 <style>
   :root {
-    --bg:      #1a1512;
-    --bg-alt:  #211c18;
-    --bg-card: #2a2118;
-    --text:    #f0ead8;
-    --text-dim:#9c9180;
-    --accent:  #d9a851;
-    --accent-dim: rgba(217,168,81,0.14);
-    --border:  #38301f;
-  }
-
-  [data-theme="light"] {
-    --bg:      #f5f0e8;
-    --bg-alt:  #ede6d8;
-    --bg-card: #e4dbc8;
-    --text:    #1a1410;
-    --text-dim:#6b6050;
-    --accent:  #b8852a;
-    --accent-dim: rgba(184,133,42,0.12);
-    --border:  #cec4b0;
+    --bg:      #faf7f2;
+    --bg-alt:  #f2ece1;
+    --bg-card: #eee7d9;
+    --text:    #1c1810;
+    --text-dim:#6b5e4a;
+    --accent:  #c9a84c;
+    --accent-dim: rgba(201,168,76,0.15);
+    --border:  #ddd5c4;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -37,7 +26,6 @@
     color: var(--text);
     font-family: 'Helvetica Neue', Arial, sans-serif;
     line-height: 1.7;
-    transition: background 0.25s, color 0.25s;
   }
 
   /* subtle grain */
@@ -56,13 +44,10 @@
     position: sticky;
     top: 0;
     z-index: 100;
-    background: rgba(20, 24, 31, 0.92);
+    background: rgba(20, 24, 31, 0.95);
     backdrop-filter: blur(10px);
     border-bottom: 1px solid #2a313d;
-    transition: background 0.25s;
   }
-
-  [data-theme="light"] nav { background: rgba(247,244,239,0.92); border-bottom-color: #d0ccc4; }
 
   nav .inner {
     max-width: 940px;
@@ -89,19 +74,6 @@
 
   nav a:hover, nav a.active { color: #d9a851; }
 
-  .theme-btn {
-    background: none;
-    border: 1px solid #2a313d;
-    color: #9a9790;
-    font-size: 0.78rem;
-    padding: 5px 12px;
-    border-radius: 999px;
-    cursor: pointer;
-    font-family: inherit;
-    transition: all 0.2s;
-  }
-
-  .theme-btn:hover { border-color: #d9a851; color: #d9a851; }
 
   /* Layout */
   .wrap { max-width: 940px; margin: 0 auto; padding: 0 24px; position: relative; z-index: 1; }
@@ -182,14 +154,14 @@
   }
 
   .leaflet-tooltip {
-    background: #1a1512 !important;
-    border: 1px solid #d9a851 !important;
-    color: #f0ead8 !important;
+    background: #fff !important;
+    border: 1px solid var(--accent) !important;
+    color: var(--text) !important;
     font-size: 0.8rem !important;
     font-family: 'Helvetica Neue', Arial, sans-serif !important;
     border-radius: 4px !important;
     padding: 4px 10px !important;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.4) !important;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.10) !important;
   }
 
   .leaflet-tooltip-left::before,
@@ -204,11 +176,11 @@
   }
 
   .polaroid {
-    background: #2e261c;
+    background: #fff;
     border: 1px solid var(--border);
     border-radius: 3px;
     padding: 10px 10px 20px;
-    box-shadow: 0 6px 20px rgba(0,0,0,0.35);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.10);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     transform-origin: center bottom;
   }
@@ -218,7 +190,7 @@
 
   .polaroid:hover {
     transform: rotate(0deg) translateY(-6px) scale(1.03) !important;
-    box-shadow: 0 16px 36px rgba(0,0,0,0.5);
+    box-shadow: 0 16px 36px rgba(0,0,0,0.15);
     z-index: 2;
     position: relative;
   }
@@ -273,7 +245,7 @@
   .artist-card:hover {
     transform: translateY(-4px);
     border-color: var(--accent);
-    box-shadow: 0 12px 28px rgba(0,0,0,0.3);
+    box-shadow: 0 12px 28px rgba(0,0,0,0.10);
   }
 
   .artist-art {
@@ -306,7 +278,7 @@
     display: flex;
     gap: 28px;
     align-items: flex-start;
-    box-shadow: 0 0 0 1px rgba(217,168,81,0.08), 0 8px 32px rgba(0,0,0,0.25);
+    box-shadow: 0 0 0 1px rgba(201,168,76,0.12), 0 8px 32px rgba(0,0,0,0.08);
   }
 
   .aoty-art {
@@ -428,7 +400,6 @@
       <li><a href="index.html#projects">Projects</a></li>
       <li><a href="index.html#contact">Contact</a></li>
       <li><a href="fun.html" class="active">After 5:00</a></li>
-      <li><button class="theme-btn" id="themeToggle">☀ Light</button></li>
     </ul>
   </div>
 </nav>
@@ -648,16 +619,6 @@
 <script>
 document.getElementById('year').textContent = new Date().getFullYear();
 
-// Theme toggle
-const toggle = document.getElementById('themeToggle');
-const html   = document.documentElement;
-let dark = true;
-toggle.addEventListener('click', () => {
-  dark = !dark;
-  html.setAttribute('data-theme', dark ? 'dark' : 'light');
-  toggle.textContent = dark ? '☀ Light' : '☾ Dark';
-});
-
 // ── MAP ──
 const map = L.map('map', {
   center: [20, 10],
@@ -668,7 +629,7 @@ const map = L.map('map', {
   attributionControl: false,
 });
 
-L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
   subdomains: 'abcd',
   maxZoom: 19,
 }).addTo(map);
