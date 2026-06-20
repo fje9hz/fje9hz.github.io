@@ -370,6 +370,123 @@
     line-height: 1.6;
   }
 
+  /* ── SPORTS ── */
+  .sport-block { margin-bottom: 48px; }
+  .sport-block:last-child { margin-bottom: 0; }
+
+  .sport-divider {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin: 36px 0 22px;
+  }
+  .sport-divider::before, .sport-divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+  .sport-divider span {
+    font-size: 0.68rem;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--accent);
+    white-space: nowrap;
+  }
+
+  .sport-row {
+    display: grid;
+    grid-template-columns: 1.25fr repeat(auto-fill, minmax(145px, 1fr));
+    gap: 16px;
+    align-items: start;
+  }
+  .sport-row.no-team {
+    grid-template-columns: repeat(auto-fill, minmax(145px, 1fr));
+  }
+
+  .sport-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+    transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+  }
+  .sport-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--accent);
+    box-shadow: 0 12px 28px rgba(0,0,0,0.10);
+  }
+  .sport-card.team-card { border-color: var(--accent); }
+
+  .sport-img {
+    width: 100%;
+    aspect-ratio: 1;
+    background: var(--bg-alt);
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .sport-img img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top;
+  }
+  .sport-img.logo img {
+    object-fit: contain;
+    padding: 18px;
+  }
+
+  .sport-info { padding: 11px 13px 13px; }
+  .sport-label {
+    font-size: 0.62rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 4px;
+  }
+  .sport-name { font-size: 0.9rem; font-weight: 600; color: var(--text); line-height: 1.3; }
+  .sport-note { font-size: 0.74rem; color: var(--text-dim); font-style: italic; margin-top: 5px; line-height: 1.45; }
+
+  .sport-fallback { background: var(--bg-alt); }
+  .sport-fallback::after {
+    content: attr(data-initials);
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--accent);
+    z-index: 0;
+  }
+  .sport-fallback img { z-index: 1; }
+
+  .wizards-note-card {
+    background: var(--bg-card);
+    border: 1px dashed var(--border);
+    border-radius: 10px;
+    padding: 20px 18px;
+    font-size: 0.88rem;
+    color: var(--text-dim);
+    font-style: italic;
+    line-height: 1.6;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .wizards-note-card .wiz-emoji { font-size: 1.8rem; flex-shrink: 0; }
+
+  @media (max-width: 640px) {
+    .sport-row { grid-template-columns: 1fr 1fr; }
+    .sport-row.no-team { grid-template-columns: 1fr 1fr; }
+  }
+
   /* ── FOOD ── */
   .food-grid {
     display: grid;
@@ -874,6 +991,238 @@
         <h3 class="aoty-title" style="font-size:1.3rem;">"I Will Survive" — Gloria Gaynor</h3>
         <h3 class="aoty-title" style="font-size:1.3rem; margin-top:6px;">"Holding Out for a Hero" — Bonnie Tyler</h3>
         <p class="aoty-note" style="margin-top:14px;">These two. Every time. No hesitation.</p>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ── SPORTS ── -->
+  <section id="sports">
+    <p class="section-eyebrow">Sports</p>
+    <h2 class="section-title">Teams &amp; Players</h2>
+    <p class="section-sub">Lifelong DC sports fan. This section is non-negotiable.</p>
+
+    <!-- NFL -->
+    <div class="sport-divider"><span>NFL</span></div>
+    <div class="sport-row">
+      <div class="sport-card team-card">
+        <div class="sport-img logo sport-fallback" data-initials="WAS">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Washington_Commanders_logo.svg/330px-Washington_Commanders_logo.svg.png" alt="Washington Commanders" />
+        </div>
+        <div class="sport-info">
+          <div class="sport-label">My Team</div>
+          <div class="sport-name">Washington Commanders</div>
+          <div class="sport-note">Bleeding burgundy and gold since day one.</div>
+        </div>
+      </div>
+      <div class="sport-card">
+        <div class="sport-img sport-fallback" data-initials="TB">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/25th_Laureus_World_Sports_Awards_-_Red_Carpet_-_Tom_Brady_-_240422_191334_%28cropped%29_%28cropped%29.jpg/330px-25th_Laureus_World_Sports_Awards_-_Red_Carpet_-_Tom_Brady_-_240422_191334_%28cropped%29_%28cropped%29.jpg" alt="Tom Brady" />
+        </div>
+        <div class="sport-info">
+          <div class="sport-label">All Time</div>
+          <div class="sport-name">Tom Brady</div>
+          <div class="sport-note">The GOAT. It hurts to say it but it's true.</div>
+        </div>
+      </div>
+      <div class="sport-card">
+        <div class="sport-img sport-fallback" data-initials="JD">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/Jayden_Daniels_2025.jpg/330px-Jayden_Daniels_2025.jpg" alt="Jayden Daniels" />
+        </div>
+        <div class="sport-info">
+          <div class="sport-label">Current</div>
+          <div class="sport-name">Jayden Daniels</div>
+          <div class="sport-note">The future is now in DC.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MLB -->
+    <div class="sport-divider"><span>MLB</span></div>
+    <div class="sport-row">
+      <div class="sport-card team-card">
+        <div class="sport-img logo sport-fallback" data-initials="WSH">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/Washington_Nationals_logo.svg/330px-Washington_Nationals_logo.svg.png" alt="Washington Nationals" />
+        </div>
+        <div class="sport-info">
+          <div class="sport-label">My Team</div>
+          <div class="sport-name">Washington Nationals</div>
+          <div class="sport-note">World Series 2019. Never forget.</div>
+        </div>
+      </div>
+      <div class="sport-card">
+        <div class="sport-img sport-fallback" data-initials="MS">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/54/Max_Scherzer_pitching%2C_March_30%2C_2023_%281%29_%28cropped%29.jpg/330px-Max_Scherzer_pitching%2C_March_30%2C_2023_%281%29_%28cropped%29.jpg" alt="Max Scherzer" />
+        </div>
+        <div class="sport-info">
+          <div class="sport-label">All Time</div>
+          <div class="sport-name">Max Scherzer</div>
+          <div class="sport-note">Mad Max was must-watch every single start.</div>
+        </div>
+      </div>
+      <div class="sport-card">
+        <div class="sport-img sport-fallback" data-initials="CJA">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/CJ_Abrams_2025.png/330px-CJ_Abrams_2025.png" alt="CJ Abrams" />
+        </div>
+        <div class="sport-info">
+          <div class="sport-label">Current</div>
+          <div class="sport-name">CJ Abrams</div>
+          <div class="sport-note">Building something special in DC.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- NHL -->
+    <div class="sport-divider"><span>NHL</span></div>
+    <div class="sport-row">
+      <div class="sport-card team-card">
+        <div class="sport-img logo sport-fallback" data-initials="WSH">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/Washington_Capitals.svg/330px-Washington_Capitals.svg.png" alt="Washington Capitals" />
+        </div>
+        <div class="sport-info">
+          <div class="sport-label">My Team</div>
+          <div class="sport-name">Washington Capitals</div>
+          <div class="sport-note">Ovi's house.</div>
+        </div>
+      </div>
+      <div class="sport-card">
+        <div class="sport-img sport-fallback" data-initials="OVI">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Alexander_Ovechkin_%2849479646361%29_%281%29.jpg/330px-Alexander_Ovechkin_%2849479646361%29_%281%29.jpg" alt="Alex Ovechkin" />
+        </div>
+        <div class="sport-info">
+          <div class="sport-label">All Time</div>
+          <div class="sport-name">Alex Ovechkin</div>
+          <div class="sport-note">Greatest goal scorer in NHL history. The record proves it.</div>
+        </div>
+      </div>
+      <div class="sport-card">
+        <div class="sport-img sport-fallback" data-initials="OVI">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Alexander_Ovechkin_%2849479646361%29_%281%29.jpg/330px-Alexander_Ovechkin_%2849479646361%29_%281%29.jpg" alt="Alex Ovechkin" />
+        </div>
+        <div class="sport-info">
+          <div class="sport-label">Current</div>
+          <div class="sport-name">Alex Ovechkin</div>
+          <div class="sport-note">Still going. Still unstoppable.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- NBA -->
+    <div class="sport-divider"><span>NBA</span></div>
+    <div class="sport-row">
+      <div class="sport-card team-card">
+        <div class="sport-img logo sport-fallback" data-initials="WIZ">
+          <img src="https://upload.wikimedia.org/wikipedia/en/thumb/0/02/Washington_Wizards_logo.svg/330px-Washington_Wizards_logo.svg.png" alt="Washington Wizards" />
+        </div>
+        <div class="sport-info">
+          <div class="sport-label">My Team</div>
+          <div class="sport-name">Washington Wizards</div>
+          <div class="sport-note">Loyal through the pain.</div>
+        </div>
+      </div>
+      <div class="wizards-note-card">
+        <span class="wiz-emoji">😂</span>
+        <span>Still waiting on that franchise player. We're patient.</span>
+      </div>
+    </div>
+
+    <!-- UFC -->
+    <div class="sport-divider"><span>UFC</span></div>
+    <div class="sport-row no-team">
+      <div class="sport-card">
+        <div class="sport-img sport-fallback" data-initials="GSP">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/2021_-_Centre_Stage_DG4_5765_%2851654942080%29_%28cropped%29.jpg/330px-2021_-_Centre_Stage_DG4_5765_%2851654942080%29_%28cropped%29.jpg" alt="Georges St-Pierre" />
+        </div>
+        <div class="sport-info">
+          <div class="sport-label">All Time</div>
+          <div class="sport-name">GSP</div>
+          <div class="sport-note">GSP redefined the sport. Two GOATs.</div>
+        </div>
+      </div>
+      <div class="sport-card">
+        <div class="sport-img sport-fallback" data-initials="KH">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Khabib_nurmagomedov.jpg/330px-Khabib_nurmagomedov.jpg" alt="Khabib Nurmagomedov" />
+        </div>
+        <div class="sport-info">
+          <div class="sport-label">All Time</div>
+          <div class="sport-name">Khabib</div>
+          <div class="sport-note">Retired undefeated. Never touched.</div>
+        </div>
+      </div>
+      <div class="sport-card">
+        <div class="sport-img sport-fallback" data-initials="IM">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Islam_Makhachev_and_Sergey_Melikov_2025_%28cropped%29.jpg/330px-Islam_Makhachev_and_Sergey_Melikov_2025_%28cropped%29.jpg" alt="Islam Makhachev" />
+        </div>
+        <div class="sport-info">
+          <div class="sport-label">Current</div>
+          <div class="sport-name">Islam Makhachev</div>
+          <div class="sport-note">The three most exciting fighters in the game right now.</div>
+        </div>
+      </div>
+      <div class="sport-card">
+        <div class="sport-img sport-fallback" data-initials="IT">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/Ilia_Topuria_in_the_Oval_Office_%28while_President_Donald_J._Trump_is_holding_a_meeting_with_UFC_fighters%29.jpg/330px-Ilia_Topuria_in_the_Oval_Office_%28while_President_Donald_J._Trump_is_holding_a_meeting_with_UFC_fighters%29.jpg" alt="Ilia Topuria" />
+        </div>
+        <div class="sport-info">
+          <div class="sport-label">Current</div>
+          <div class="sport-name">Ilia Topuria</div>
+          <div class="sport-note">El Matador is must-watch every fight.</div>
+        </div>
+      </div>
+      <div class="sport-card">
+        <div class="sport-img sport-fallback" data-initials="SOM">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/UFC_Freedom_250_press_conference_at_the_Lincoln_Memorial_in_Washington%2C_D.C.%2C_Friday%2C_June_12%2C_2026_-_25%28cropped%29.jpg/330px-UFC_Freedom_250_press_conference_at_the_Lincoln_Memorial_in_Washington%2C_D.C.%2C_Friday%2C_June_12%2C_2026_-_25%28cropped%29.jpg" alt="Sean O'Malley" />
+        </div>
+        <div class="sport-info">
+          <div class="sport-label">Current</div>
+          <div class="sport-name">Sean O'Malley</div>
+          <div class="sport-note">Sugar puts on a show every single time.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Soccer -->
+    <div class="sport-divider"><span>Soccer</span></div>
+    <div class="sport-row">
+      <div class="sport-card team-card">
+        <div class="sport-img logo sport-fallback" data-initials="FCB">
+          <img src="https://upload.wikimedia.org/wikipedia/en/thumb/4/47/FC_Barcelona_%28crest%29.svg/330px-FC_Barcelona_%28crest%29.svg.png" alt="FC Barcelona" />
+        </div>
+        <div class="sport-info">
+          <div class="sport-label">My Club</div>
+          <div class="sport-name">FC Barcelona</div>
+          <div class="sport-note">Barcelona for the club. USMNT for the country.</div>
+        </div>
+      </div>
+      <div class="sport-card team-card">
+        <div class="sport-img logo sport-fallback" data-initials="USA">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/United_States_Soccer_Federation_logo.svg/330px-United_States_Soccer_Federation_logo.svg.png" alt="USMNT" />
+        </div>
+        <div class="sport-info">
+          <div class="sport-label">My National Team</div>
+          <div class="sport-name">USMNT</div>
+          <div class="sport-note">World Cup 2026. Home soil. Let's go.</div>
+        </div>
+      </div>
+      <div class="sport-card">
+        <div class="sport-img sport-fallback" data-initials="LM">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Lionel_Messi_White_House_2026_%283x4_cropped%29.jpg/330px-Lionel_Messi_White_House_2026_%283x4_cropped%29.jpg" alt="Lionel Messi" />
+        </div>
+        <div class="sport-info">
+          <div class="sport-label">All Time</div>
+          <div class="sport-name">Lionel Messi</div>
+          <div class="sport-note">Greatest to ever play the beautiful game. The World Cup proved it.</div>
+        </div>
+      </div>
+      <div class="sport-card">
+        <div class="sport-img sport-fallback" data-initials="CP">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Christian_Pulisic_USMNT_v_Belgium_Mar_28_2026-73_%28cropped%29.jpg/330px-Christian_Pulisic_USMNT_v_Belgium_Mar_28_2026-73_%28cropped%29.jpg" alt="Christian Pulisic" />
+        </div>
+        <div class="sport-info">
+          <div class="sport-label">Current</div>
+          <div class="sport-name">Christian Pulisic</div>
+          <div class="sport-note">Captain America. Carrying the USMNT on his back.</div>
+        </div>
       </div>
     </div>
 
