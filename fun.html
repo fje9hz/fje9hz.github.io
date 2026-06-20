@@ -395,13 +395,19 @@
   }
 
   .sport-row {
-    display: grid;
-    grid-template-columns: 1.25fr repeat(auto-fill, minmax(145px, 1fr));
+    display: flex;
+    flex-wrap: wrap;
     gap: 16px;
     align-items: start;
   }
-  .sport-row.no-team {
-    grid-template-columns: repeat(auto-fill, minmax(145px, 1fr));
+  .sport-row .sport-card,
+  .sport-row .wizards-note-card {
+    flex: 0 0 155px;
+    width: 155px;
+  }
+  .sport-row .sport-card.team-card {
+    flex: 0 0 175px;
+    width: 175px;
   }
 
   .sport-card {
