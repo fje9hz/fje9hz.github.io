@@ -843,6 +843,41 @@
         </div>
       </div>
 
+      <!-- PEAD Analysis Platform -->
+      <div class="card featured">
+        <div class="card-left">
+          <h3>PEAD Analysis Platform</h3>
+          <p class="card-meta">Quantitative Finance · Full-Stack ML Research Platform</p>
+          <p class="desc">Built a full-stack quantitative finance research platform on 2.9 million rows of real institutional data (WRDS/IBES/CRSP) to model Post-Earnings Announcement Drift. Random Forest classifier with 0.704 ROC AUC, trained with time-series walk-forward cross-validation to prevent look-ahead bias. Deployed with FastAPI, Docker, and GitHub Actions CI.</p>
+          <div class="card-links">
+            <a href="https://pead-analysis.onrender.com" target="_blank" rel="noopener">Live App →</a>
+            <a href="https://github.com/fje9hz/pead-analysis" target="_blank" rel="noopener">GitHub →</a>
+          </div>
+        </div>
+        <div class="card-right">
+          <div class="stat-row">
+            <div class="stat"><div class="val">7,352</div><div class="lbl">Earnings Events</div></div>
+            <div class="stat"><div class="val">0.704</div><div class="lbl">ROC AUC</div></div>
+            <div class="stat"><div class="val">687</div><div class="lbl">Unique Tickers</div></div>
+            <div class="stat"><div class="val">2010–23</div><div class="lbl">S&amp;P 500</div></div>
+          </div>
+          <ul class="card-bullets">
+            <li>Real institutional data from WRDS — same sources used by hedge funds and academic researchers</li>
+            <li>Walk-forward cross-validation with time-series splits to eliminate look-ahead bias</li>
+            <li>Signal Dashboard with live ticker screening, drift charts, and model confidence scoring</li>
+            <li>FastAPI backend · Docker · GitHub Actions CI/CD · deployed on Render</li>
+          </ul>
+          <div class="tags">
+            <span class="tag">Python</span>
+            <span class="tag">FastAPI</span>
+            <span class="tag">scikit-learn</span>
+            <span class="tag">WRDS</span>
+            <span class="tag">Docker</span>
+            <span class="tag">Chart.js</span>
+          </div>
+        </div>
+      </div>
+
       <!-- E-Commerce Warehouse -->
       <div class="card">
         <h3>E-Commerce Analytics Warehouse</h3>
@@ -910,23 +945,6 @@
 
     <p class="section-label" style="margin-top: 52px;">In Progress</p>
     <div class="project-grid">
-
-      <div class="card">
-        <span class="placeholder-badge">In Progress</span>
-        <h3>PEAD — Earnings Surprise Model</h3>
-        <p class="card-meta">Quantitative Finance · ML</p>
-        <p class="desc">Modeling post-earnings announcement drift across S&P 500 stocks using IBES analyst estimates and CRSP price data. Predicts which companies will beat or miss consensus earnings and tracks how long the market takes to fully price in the surprise.</p>
-        <div class="tags">
-          <span class="tag">Python</span>
-          <span class="tag">IBES</span>
-          <span class="tag">CRSP</span>
-          <span class="tag">scikit-learn</span>
-          <span class="tag">Time-Series</span>
-        </div>
-        <div style="margin-top: 16px;">
-          <a href="https://pead-analysis.onrender.com/" target="_blank" rel="noopener" class="btn btn-outline" style="font-size:0.82rem; padding: 7px 16px;">View Live →</a>
-        </div>
-      </div>
 
       <div class="card">
         <span class="placeholder-badge">In Progress</span>
