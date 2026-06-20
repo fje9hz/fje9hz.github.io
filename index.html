@@ -330,6 +330,14 @@
 
   .card.featured:hover { transform: translateY(-3px); }
 
+  .pead-thumb {
+    margin-top: 20px;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+  }
+
   .card-left {}
   .card-right {}
 
@@ -852,6 +860,57 @@
           <div class="card-links">
             <a href="https://pead-analysis.onrender.com" target="_blank" rel="noopener">Live App →</a>
             <a href="https://github.com/fje9hz/pead-analysis" target="_blank" rel="noopener">GitHub →</a>
+          </div>
+          <!-- Dashboard thumbnail — replace src with pead-screenshot.png when ready -->
+          <div class="pead-thumb">
+            <svg viewBox="0 0 560 280" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;border-radius:6px;">
+              <rect width="560" height="280" fill="#0d1117"/>
+              <!-- nav bar -->
+              <rect width="560" height="32" fill="#111820"/>
+              <circle cx="16" cy="16" r="4" fill="#00d4aa"/>
+              <text x="28" y="21" font-family="monospace" font-size="9" fill="#00d4aa" letter-spacing="1">PEAD / RESEARCH TERMINAL</text>
+              <text x="310" y="21" font-family="monospace" font-size="8" fill="#00d4aa">EXPLORER</text>
+              <text x="365" y="21" font-family="monospace" font-size="8" fill="#4a5568">SIGNALS</text>
+              <text x="415" y="21" font-family="monospace" font-size="8" fill="#4a5568">BACKTEST</text>
+              <text x="465" y="21" font-family="monospace" font-size="8" fill="#4a5568">METHODOLOGY</text>
+              <!-- eyebrow -->
+              <rect x="20" y="52" width="3" height="1" fill="#4a5568"/>
+              <text x="28" y="54" font-family="monospace" font-size="7" fill="#4a5568" letter-spacing="2">QUANTITATIVE FINANCE RESEARCH</text>
+              <!-- headline -->
+              <text x="20" y="76" font-family="Arial,sans-serif" font-size="22" font-weight="700" fill="#ffffff">Post-Earnings</text>
+              <text x="20" y="102" font-family="Arial,sans-serif" font-size="22" font-weight="700" fill="#00d4aa">Announcement Drift</text>
+              <!-- body text lines -->
+              <rect x="20" y="114" width="280" height="5" rx="2" fill="#2d3748"/>
+              <rect x="20" y="124" width="260" height="5" rx="2" fill="#2d3748"/>
+              <rect x="20" y="134" width="220" height="5" rx="2" fill="#2d3748"/>
+              <!-- tags -->
+              <rect x="20" y="150" width="68" height="14" rx="3" fill="#1a2332" stroke="#2d3748" stroke-width="0.5"/>
+              <text x="54" y="160" font-family="monospace" font-size="6" fill="#6b7280" text-anchor="middle">IBES Consensus</text>
+              <rect x="94" y="150" width="60" height="14" rx="3" fill="#1a2332" stroke="#2d3748" stroke-width="0.5"/>
+              <text x="124" y="160" font-family="monospace" font-size="6" fill="#6b7280" text-anchor="middle">CRSP Returns</text>
+              <rect x="160" y="150" width="80" height="14" rx="3" fill="#1a2332" stroke="#2d3748" stroke-width="0.5"/>
+              <text x="200" y="160" font-family="monospace" font-size="6" fill="#6b7280" text-anchor="middle">Random Forest · LR</text>
+              <!-- stats panel -->
+              <rect x="370" y="44" width="170" height="150" rx="6" fill="#111820" stroke="#1e2d3d" stroke-width="1"/>
+              <text x="382" y="64" font-family="monospace" font-size="7" fill="#4a5568" letter-spacing="1">COVERAGE</text>
+              <text x="382" y="78" font-family="monospace" font-size="11" font-weight="700" fill="#00d4aa">S&amp;P 500</text>
+              <text x="382" y="96" font-family="monospace" font-size="7" fill="#4a5568" letter-spacing="1">SAMPLE PERIOD</text>
+              <text x="382" y="110" font-family="monospace" font-size="11" font-weight="700" fill="#00d4aa">2010–2023</text>
+              <text x="382" y="128" font-family="monospace" font-size="7" fill="#4a5568" letter-spacing="1">MODEL AUC</text>
+              <text x="382" y="142" font-family="monospace" font-size="11" font-weight="700" fill="#00d4aa">0.704</text>
+              <text x="382" y="160" font-family="monospace" font-size="7" fill="#4a5568" letter-spacing="1">DATA SOURCE</text>
+              <text x="382" y="174" font-family="monospace" font-size="11" font-weight="700" fill="#00d4aa">WRDS</text>
+              <!-- key finding band -->
+              <rect x="0" y="198" width="560" height="50" fill="#0f1923"/>
+              <rect x="20" y="208" width="60" height="14" rx="3" fill="#1a3a2a" stroke="#00d4aa" stroke-width="0.5"/>
+              <text x="50" y="218" font-family="monospace" font-size="6.5" fill="#00d4aa" text-anchor="middle">KEY FINDING</text>
+              <rect x="20" y="228" width="520" height="5" rx="2" fill="#1e2d3d"/>
+              <rect x="20" y="238" width="440" height="5" rx="2" fill="#1e2d3d"/>
+              <!-- explorer section -->
+              <rect x="0" y="248" width="560" height="32" fill="#0d1117"/>
+              <text x="20" y="265" font-family="monospace" font-size="7" fill="#4a5568">01</text>
+              <text x="34" y="265" font-family="Arial,sans-serif" font-size="9" font-weight="700" fill="#ffffff">PEAD EXPLORER</text>
+            </svg>
           </div>
         </div>
         <div class="card-right">
