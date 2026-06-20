@@ -448,6 +448,16 @@
     font-size: 0.75rem;
   }
 
+  .project-thumb {
+    width: 100%;
+    aspect-ratio: 3 / 2;
+    object-fit: cover;
+    display: block;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    margin-bottom: 18px;
+  }
+
   /* Experience */
   .exp-list {
     display: flex;
@@ -950,6 +960,7 @@
           <li>Wrote 6 analyst-grade SQL queries measuring e-commerce KPIs: cohort retention, RFM customer segmentation, funnel conversion, product performance trends, time-series sales analysis, and customer LTV</li>
           <li>Built and embedded a live interactive Power BI dashboard visualizing warehouse outputs across 5 datasets — 614 days of revenue trends, 73K customers segmented by RFM, 7 UTM source conversion rates, 49K product-quarter performance rows, and 15-month cohort LTV analysis</li>
         </ul>
+        <img class="project-thumb" src="powerbi-thumbnail.png" alt="Power BI dashboard for the E-Commerce Analytics Warehouse" loading="lazy" />
         <div class="tags">
           <span class="tag">PostgreSQL</span>
           <span class="tag">Python</span>
