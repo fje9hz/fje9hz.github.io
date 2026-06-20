@@ -451,16 +451,19 @@
   .dashboard-embed {
     width: 100%;
     aspect-ratio: 16 / 9;
+    position: relative;
     border: 1px solid var(--border);
     border-radius: 6px;
     overflow: hidden;
+    margin-top: 20px;
     margin-bottom: 18px;
     background: var(--bg-alt);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.2);
   }
 
   .dashboard-embed iframe {
     width: 100%;
-    height: 100%;
+    height: calc(100% + 82px);
     display: block;
     border: 0;
   }
@@ -959,31 +962,35 @@
       </div>
 
       <!-- E-Commerce Warehouse -->
-      <div class="card">
-        <h3>E-Commerce Analytics Warehouse</h3>
-        <p class="card-meta">Feb 2026 – Mar 2026</p>
-        <p class="desc">Built a 4-layer PostgreSQL analytics warehouse processing ~100K orders and 25K customers — Kimball star schema, SCD Type 2, idempotent ETL pipelines, and data quality checks throughout.</p>
-        <ul class="card-bullets">
-          <li>Wrote 6 analyst-grade SQL queries measuring e-commerce KPIs: cohort retention, RFM customer segmentation, funnel conversion, product performance trends, time-series sales analysis, and customer LTV</li>
-          <li>Built and embedded a live interactive Power BI dashboard visualizing warehouse outputs across 5 datasets — 614 days of revenue trends, 73K customers segmented by RFM, 7 UTM source conversion rates, 49K product-quarter performance rows, and 15-month cohort LTV analysis</li>
-        </ul>
-        <div class="dashboard-embed" aria-label="Interactive Power BI dashboard for the E-Commerce Analytics Warehouse">
-          <iframe
-            title="Olist Power BI Dashboard"
-            src="https://app.powerbi.com/view?r=eyJrIjoiNzgzNjI5Y2QtMzlmYy00YjM2LTlmOTMtZmZkNzkzMzk5OGM3IiwidCI6IjdiMzQ4MGM3LTM3MDctNDg3My04Yjc3LWUyMTY3MzNhNjVhYyIsImMiOjF9"
-            frameborder="0"
-            allowfullscreen="true">
-          </iframe>
+      <div class="card featured">
+        <div class="card-left">
+          <h3>E-Commerce Analytics Warehouse</h3>
+          <p class="card-meta">Feb 2026 – Mar 2026</p>
+          <p class="desc">Built a 4-layer PostgreSQL analytics warehouse processing ~100K orders and 25K customers — Kimball star schema, SCD Type 2, idempotent ETL pipelines, and data quality checks throughout.</p>
+          <div class="dashboard-embed" aria-label="Interactive Power BI dashboard for the E-Commerce Analytics Warehouse">
+            <iframe
+              title="Olist Power BI Dashboard"
+              src="https://app.powerbi.com/view?r=eyJrIjoiNzgzNjI5Y2QtMzlmYy00YjM2LTlmOTMtZmZkNzkzMzk5OGM3IiwidCI6IjdiMzQ4MGM3LTM3MDctNDg3My04Yjc3LWUyMTY3MzNhNjVhYyIsImMiOjF9"
+              frameborder="0"
+              allowfullscreen="true">
+            </iframe>
+          </div>
         </div>
-        <div class="tags">
-          <span class="tag">PostgreSQL</span>
-          <span class="tag">Python</span>
-          <span class="tag">SQL</span>
-          <span class="tag">ETL</span>
-          <span class="tag">Kimball</span>
-        </div>
-        <div class="card-links">
-          <a href="https://github.com/fje9hz/ecommerce-analytics-warehouse" target="_blank" rel="noopener">GitHub →</a>
+        <div class="card-right">
+          <ul class="card-bullets">
+            <li>Wrote 6 analyst-grade SQL queries measuring e-commerce KPIs: cohort retention, RFM customer segmentation, funnel conversion, product performance trends, time-series sales analysis, and customer LTV</li>
+            <li>Built and embedded a live interactive Power BI dashboard visualizing warehouse outputs across 5 datasets — 614 days of revenue trends, 73K customers segmented by RFM, 7 UTM source conversion rates, 49K product-quarter performance rows, and 15-month cohort LTV analysis</li>
+          </ul>
+          <div class="tags">
+            <span class="tag">PostgreSQL</span>
+            <span class="tag">Python</span>
+            <span class="tag">SQL</span>
+            <span class="tag">ETL</span>
+            <span class="tag">Kimball</span>
+          </div>
+          <div class="card-links">
+            <a href="https://github.com/fje9hz/ecommerce-analytics-warehouse" target="_blank" rel="noopener">GitHub →</a>
+          </div>
         </div>
       </div>
 
