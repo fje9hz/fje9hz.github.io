@@ -268,6 +268,7 @@
   .artist-info { padding: 12px 14px; }
   .artist-name { font-size: 0.92rem; font-weight: 600; color: var(--text); }
   .artist-tag { font-size: 0.72rem; color: var(--accent); margin-top: 4px; font-style: italic; opacity: 0.85; }
+  .artist-one-liner { font-size: 0.74rem; color: var(--text-dim); margin-top: 5px; font-style: italic; line-height: 1.45; }
 
   /* Old Soul divider */
   .old-soul-divider {
@@ -536,44 +537,99 @@
     <h2 class="section-title">What I Listen To</h2>
     <p class="section-sub">Rotation stays consistent.</p>
 
+    <!-- HIP HOP label -->
+    <div class="old-soul-divider"><span>Hip Hop</span></div>
+
     <div class="music-grid">
 
       <div class="artist-card">
-        <div class="artist-art">
+        <div class="artist-art artist-fallback" data-initials="TS">
           <img src="travis-scott.webp" alt="Travis Scott" />
         </div>
         <div class="artist-info">
           <div class="artist-name">Travis Scott</div>
-          <div class="artist-tag">The greatest to ever do it</div>
+          <div class="artist-one-liner">Greatest to ever do it. Not up for debate.</div>
         </div>
       </div>
 
       <div class="artist-card">
-        <div class="artist-art">
+        <div class="artist-art artist-fallback" data-initials="F">
           <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Future_-_Openair_Frauenfeld_2019_01_%28cropped%29.jpg/250px-Future_-_Openair_Frauenfeld_2019_01_%28cropped%29.jpg" alt="Future" />
         </div>
-        <div class="artist-info"><div class="artist-name">Future</div></div>
+        <div class="artist-info">
+          <div class="artist-name">Future</div>
+          <div class="artist-one-liner">The voice of a generation.</div>
+        </div>
       </div>
 
       <div class="artist-card">
-        <div class="artist-art">
+        <div class="artist-art artist-fallback" data-initials="D">
           <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Drake_at_The_Carter_Effect_2017_%2836818935200%29_%28cropped%29.jpg/250px-Drake_at_The_Carter_Effect_2017_%2836818935200%29_%28cropped%29.jpg" alt="Drake" />
         </div>
-        <div class="artist-info"><div class="artist-name">Drake</div></div>
+        <div class="artist-info">
+          <div class="artist-name">Drake</div>
+          <div class="artist-one-liner">Love him or hate him, you know every word.</div>
+        </div>
       </div>
 
       <div class="artist-card">
-        <div class="artist-art">
+        <div class="artist-art artist-fallback" data-initials="TW">
           <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/The_Weeknd_Portrait_by_Brian_Ziff.jpg/250px-The_Weeknd_Portrait_by_Brian_Ziff.jpg" alt="The Weeknd" />
         </div>
-        <div class="artist-info"><div class="artist-name">The Weeknd</div></div>
+        <div class="artist-info">
+          <div class="artist-name">The Weeknd</div>
+          <div class="artist-one-liner">Starboy era changed everything.</div>
+        </div>
       </div>
 
       <div class="artist-card">
-        <div class="artist-art">
+        <div class="artist-art artist-fallback" data-initials="TL">
           <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Tory_Lanez_2500x1669.jpg/250px-Tory_Lanez_2500x1669.jpg" alt="Tory Lanez" />
         </div>
-        <div class="artist-info"><div class="artist-name">Tory Lanez</div></div>
+        <div class="artist-info">
+          <div class="artist-name">Tory Lanez</div>
+          <div class="artist-one-liner">Alone at Prom speaks for itself.</div>
+        </div>
+      </div>
+
+      <div class="artist-card">
+        <div class="artist-art artist-fallback" data-initials="AR">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/A%24AP_Rocky_at_the_2025_Cannes_Film_Festival_%28cropped_3x4%29.jpg/330px-A%24AP_Rocky_at_the_2025_Cannes_Film_Festival_%28cropped_3x4%29.jpg" alt="ASAP Rocky" />
+        </div>
+        <div class="artist-info">
+          <div class="artist-name">ASAP Rocky</div>
+          <div class="artist-one-liner">Fashion, flow, and flawless execution.</div>
+        </div>
+      </div>
+
+      <div class="artist-card">
+        <div class="artist-art artist-fallback" data-initials="PND">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/PartyNextDoor_November_2016.jpg/330px-PartyNextDoor_November_2016.jpg" alt="Partynextdoor" />
+        </div>
+        <div class="artist-info">
+          <div class="artist-name">Partynextdoor</div>
+          <div class="artist-one-liner">The most underrated in the game.</div>
+        </div>
+      </div>
+
+      <div class="artist-card">
+        <div class="artist-art artist-fallback" data-initials="PC">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/Playboi_Carti%2C_Clout_Festival_2024_05_%28cropped%29.jpg/330px-Playboi_Carti%2C_Clout_Festival_2024_05_%28cropped%29.jpg" alt="Playboi Carti" />
+        </div>
+        <div class="artist-info">
+          <div class="artist-name">Playboi Carti</div>
+          <div class="artist-one-liner">You either get it or you don't.</div>
+        </div>
+      </div>
+
+      <div class="artist-card">
+        <div class="artist-art artist-fallback" data-initials="DT">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Don_Toliver_by_Sanchez_Productions.jpg/330px-Don_Toliver_by_Sanchez_Productions.jpg" alt="Don Toliver" />
+        </div>
+        <div class="artist-info">
+          <div class="artist-name">Don Toliver</div>
+          <div class="artist-one-liner">Heaven or Hell on repeat.</div>
+        </div>
       </div>
 
     </div>
@@ -590,10 +646,172 @@
       </div>
     </div>
 
-    <!-- Old Soul Rotation -->
-    <div class="old-soul-divider">
-      <span>Old Soul Rotation</span>
+    <!-- POP -->
+    <div class="old-soul-divider"><span>Pop</span></div>
+
+    <div class="music-grid">
+
+      <div class="artist-card">
+        <div class="artist-art artist-fallback" data-initials="JT">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Justin_Timberlake_by_Gage_Skidmore.jpg/330px-Justin_Timberlake_by_Gage_Skidmore.jpg" alt="Justin Timberlake" />
+        </div>
+        <div class="artist-info">
+          <div class="artist-name">Justin Timberlake</div>
+          <div class="artist-one-liner">FutureSex/LoveSounds is a masterpiece.</div>
+        </div>
+      </div>
+
+      <div class="artist-card">
+        <div class="artist-art artist-fallback" data-initials="LG">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Lady_Gaga_at_Joe_Biden%27s_inauguration_%28cropped_5%29.jpg/330px-Lady_Gaga_at_Joe_Biden%27s_inauguration_%28cropped_5%29.jpg" alt="Lady Gaga" />
+        </div>
+        <div class="artist-info">
+          <div class="artist-name">Lady Gaga</div>
+          <div class="artist-one-liner">Born This Way era was untouchable.</div>
+        </div>
+      </div>
+
+      <div class="artist-card">
+        <div class="artist-art artist-fallback" data-initials="R">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/Rihanna_Fenty_2018.png/330px-Rihanna_Fenty_2018.png" alt="Rihanna" />
+        </div>
+        <div class="artist-info">
+          <div class="artist-name">Rihanna</div>
+          <div class="artist-one-liner">There will never be another.</div>
+        </div>
+      </div>
+
+      <div class="artist-card">
+        <div class="artist-art artist-fallback" data-initials="BS">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/Britney_Spears_2013_%28Straighten_Crop%29.jpg/330px-Britney_Spears_2013_%28Straighten_Crop%29.jpg" alt="Britney Spears" />
+        </div>
+        <div class="artist-info">
+          <div class="artist-name">Britney Spears</div>
+          <div class="artist-one-liner">The blueprint for pop.</div>
+        </div>
+      </div>
+
+      <div class="artist-card">
+        <div class="artist-art artist-fallback" data-initials="DL">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/Dua_Lipa-69798_%28cropped%29.jpg/330px-Dua_Lipa-69798_%28cropped%29.jpg" alt="Dua Lipa" />
+        </div>
+        <div class="artist-info">
+          <div class="artist-name">Dua Lipa</div>
+          <div class="artist-one-liner">Future Nostalgia brought pop back.</div>
+        </div>
+      </div>
+
+      <div class="artist-card">
+        <div class="artist-art artist-fallback" data-initials="SM">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/191125_Shawn_Mendes_at_the_2019_American_Music_Awards.png/330px-191125_Shawn_Mendes_at_the_2019_American_Music_Awards.png" alt="Shawn Mendes" />
+        </div>
+        <div class="artist-info">
+          <div class="artist-name">Shawn Mendes</div>
+          <div class="artist-one-liner">Stitches got everyone.</div>
+        </div>
+      </div>
+
+      <div class="artist-card">
+        <div class="artist-art artist-fallback" data-initials="CC">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/Camila_Cabello_Sundance_2024_Cropped_%28cropped%29.jpg/330px-Camila_Cabello_Sundance_2024_Cropped_%28cropped%29.jpg" alt="Camila Cabello" />
+        </div>
+        <div class="artist-info">
+          <div class="artist-name">Camila Cabello</div>
+          <div class="artist-one-liner">Havana still hits differently.</div>
+        </div>
+      </div>
+
+      <div class="artist-card">
+        <div class="artist-art artist-fallback" data-initials="JB">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Jonas_Brothers_4th_of_July_Show_Taping_in_Cleveland_%2851277060141%29.jpg/330px-Jonas_Brothers_4th_of_July_Show_Taping_in_Cleveland_%2851277060141%29.jpg" alt="Jonas Brothers" />
+        </div>
+        <div class="artist-info">
+          <div class="artist-name">The Jonas Brothers</div>
+          <div class="artist-one-liner">Grew up on them. No shame.</div>
+        </div>
+      </div>
+
+      <div class="artist-card">
+        <div class="artist-art artist-fallback" data-initials="SZA">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/KendrickSZASPurs230725-19_-_54683179509_%28cropped%29_%28cropped%29.jpg/330px-KendrickSZASPurs230725-19_-_54683179509_%28cropped%29_%28cropped%29.jpg" alt="SZA" />
+        </div>
+        <div class="artist-info">
+          <div class="artist-name">SZA</div>
+          <div class="artist-one-liner">SOS was the album of the year. No debate.</div>
+        </div>
+      </div>
+
     </div>
+
+    <!-- DESI / PUNJABI -->
+    <div class="old-soul-divider"><span>Desi / Punjabi</span></div>
+
+    <div class="music-grid">
+
+      <div class="artist-card">
+        <div class="artist-art artist-fallback" data-initials="DD">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/Diljit_Dosanjh.jpg/330px-Diljit_Dosanjh.jpg" alt="Diljit Dosanjh" />
+        </div>
+        <div class="artist-info">
+          <div class="artist-name">Diljit Dosanjh</div>
+          <div class="artist-one-liner">The king. Full stop.</div>
+        </div>
+      </div>
+
+      <div class="artist-card">
+        <div class="artist-art artist-fallback" data-initials="AS">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/Arijit_Singh_performance_at_Chandigarh_2025.jpg/330px-Arijit_Singh_performance_at_Chandigarh_2025.jpg" alt="Arijit Singh" />
+        </div>
+        <div class="artist-info">
+          <div class="artist-name">Arijit Singh</div>
+          <div class="artist-one-liner">Nobody makes you feel it like Arijit.</div>
+        </div>
+      </div>
+
+      <div class="artist-card">
+        <div class="artist-art artist-fallback" data-initials="APD">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/AP_Dhillon_CA.jpg/330px-AP_Dhillon_CA.jpg" alt="AP Dhillon" />
+        </div>
+        <div class="artist-info">
+          <div class="artist-name">AP Dhillon</div>
+          <div class="artist-one-liner">Put Punjabi music on the global map.</div>
+        </div>
+      </div>
+
+      <div class="artist-card">
+        <div class="artist-art artist-fallback" data-initials="S">
+          <img src="" alt="Sukha" />
+        </div>
+        <div class="artist-info">
+          <div class="artist-name">Sukha</div>
+          <div class="artist-one-liner">Underrated and underplayed.</div>
+        </div>
+      </div>
+
+      <div class="artist-card">
+        <div class="artist-art artist-fallback" data-initials="RS">
+          <img src="" alt="Raf Sapera" />
+        </div>
+        <div class="artist-info">
+          <div class="artist-name">Raf Sapera</div>
+          <div class="artist-one-liner">The voice is something else.</div>
+        </div>
+      </div>
+
+      <div class="artist-card">
+        <div class="artist-art artist-fallback" data-initials="KA">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/76/Karan_Aujla_2020.jpg/330px-Karan_Aujla_2020.jpg" alt="Karan Aujla" />
+        </div>
+        <div class="artist-info">
+          <div class="artist-name">Karan Aujla</div>
+          <div class="artist-one-liner">It Was All A Dream is a classic.</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Old Soul Rotation -->
+    <div class="old-soul-divider"><span>Old Soul Rotation</span></div>
 
     <div class="music-grid">
 
