@@ -269,6 +269,54 @@
   .artist-name { font-size: 0.92rem; font-weight: 600; color: var(--text); }
   .artist-tag { font-size: 0.72rem; color: var(--accent); margin-top: 4px; font-style: italic; opacity: 0.85; }
 
+  /* Old Soul divider */
+  .old-soul-divider {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin: 40px 0 24px;
+  }
+  .old-soul-divider::before,
+  .old-soul-divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+  .old-soul-divider span {
+    font-size: 0.72rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--accent);
+    white-space: nowrap;
+  }
+
+  /* Artist image fallback — shows initials if image fails */
+  .artist-fallback { background: var(--bg-alt); }
+  .artist-fallback::after {
+    content: attr(data-initials);
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--accent);
+    letter-spacing: 0.05em;
+    z-index: 0;
+  }
+  .artist-fallback img { z-index: 1; }
+
+  /* Karaoke callout */
+  .karaoke-card { margin-top: 32px; align-items: center; }
+  .karaoke-icon {
+    font-size: 2.4rem;
+    flex-shrink: 0;
+    width: 70px;
+    text-align: center;
+  }
+
   /* AOTY */
   .aoty-card {
     background: var(--bg-card);
@@ -541,6 +589,76 @@
         <p class="aoty-note">If you know, you know.</p>
       </div>
     </div>
+
+    <!-- Old Soul Rotation -->
+    <div class="old-soul-divider">
+      <span>Old Soul Rotation</span>
+    </div>
+
+    <div class="music-grid">
+
+      <div class="artist-card">
+        <div class="artist-art artist-fallback" data-initials="BJ">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Jon_Bon_Jovi_2012_%28cropped%29.jpg/250px-Jon_Bon_Jovi_2012_%28cropped%29.jpg" alt="Bon Jovi" />
+        </div>
+        <div class="artist-info"><div class="artist-name">Bon Jovi</div></div>
+      </div>
+
+      <div class="artist-card">
+        <div class="artist-art artist-fallback" data-initials="BT">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Bonnie_Tyler_2018.jpg/250px-Bonnie_Tyler_2018.jpg" alt="Bonnie Tyler" />
+        </div>
+        <div class="artist-info"><div class="artist-name">Bonnie Tyler</div></div>
+      </div>
+
+      <div class="artist-card">
+        <div class="artist-art artist-fallback" data-initials="GM">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/George_Michael_1988.jpg/250px-George_Michael_1988.jpg" alt="George Michael" />
+        </div>
+        <div class="artist-info"><div class="artist-name">Wham! / George Michael</div></div>
+      </div>
+
+      <div class="artist-card">
+        <div class="artist-art artist-fallback" data-initials="J">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Journey_band_at_Lollapalooza_2010.jpg/250px-Journey_band_at_Lollapalooza_2010.jpg" alt="Journey" />
+        </div>
+        <div class="artist-info"><div class="artist-name">Journey</div></div>
+      </div>
+
+      <div class="artist-card">
+        <div class="artist-art artist-fallback" data-initials="GNR">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/Guns_N%27_Roses_-_Rock_in_Rio_2011.jpg/250px-Guns_N%27_Roses_-_Rock_in_Rio_2011.jpg" alt="Guns N' Roses" />
+        </div>
+        <div class="artist-info"><div class="artist-name">Guns N' Roses</div></div>
+      </div>
+
+      <div class="artist-card">
+        <div class="artist-art artist-fallback" data-initials="MG">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/MarvinGaye1973.jpg/250px-MarvinGaye1973.jpg" alt="Marvin Gaye" />
+        </div>
+        <div class="artist-info"><div class="artist-name">Marvin Gaye</div></div>
+      </div>
+
+      <div class="artist-card">
+        <div class="artist-art artist-fallback" data-initials="EJ">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Elton_John_2015_%28cropped%29.jpg/250px-Elton_John_2015_%28cropped%29.jpg" alt="Elton John" />
+        </div>
+        <div class="artist-info"><div class="artist-name">Elton John</div></div>
+      </div>
+
+    </div>
+
+    <!-- Karaoke callout -->
+    <div class="aoty-card karaoke-card">
+      <div class="karaoke-icon">🎤</div>
+      <div>
+        <p class="aoty-badge">KARAOKE ESSENTIALS</p>
+        <h3 class="aoty-title" style="font-size:1.3rem;">"I Will Survive" — Gloria Gaynor</h3>
+        <h3 class="aoty-title" style="font-size:1.3rem; margin-top:6px;">"Holding Out for a Hero" — Bonnie Tyler</h3>
+        <p class="aoty-note" style="margin-top:14px;">These two. Every time. No hesitation.</p>
+      </div>
+    </div>
+
   </section>
 
   <!-- ── FOOD ── -->
