@@ -1076,7 +1076,7 @@
           <span class="tag">Claude API</span>
         </div>
         <div style="margin-top:16px;">
-          <span class="btn btn-disabled">Coming Soon</span>
+          <span class="btn btn-disabled">Demo Coming Soon</span>
         </div>
       </div>
 
@@ -1085,6 +1085,69 @@
         <h3>Netflix Series Completion Model</h3>
         <p class="card-meta">ML · Behavioral Analytics</p>
         <p class="desc">Predicting what makes people finish a TV series using episode-level pacing, sentiment signals, and engagement data. Built to answer a real streaming business question: why do viewers drop off, and what keeps them watching?</p>
+        <div class="pead-thumb" style="margin: 14px 0 10px;">
+          <svg viewBox="0 0 480 200" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;border-radius:6px;">
+            <rect width="480" height="200" fill="#0a0a0a"/>
+            <!-- top bar -->
+            <rect width="480" height="30" fill="#111"/>
+            <rect x="16" y="9" width="4" height="12" fill="#e50914"/>
+            <text x="26" y="20" font-family="Arial,sans-serif" font-size="9" font-weight="700" fill="#e50914" letter-spacing="2">NETFLIX</text>
+            <text x="100" y="20" font-family="monospace" font-size="7" fill="#555">SERIES COMPLETION MODEL</text>
+            <!-- drop-off chart area -->
+            <text x="16" y="46" font-family="monospace" font-size="6" fill="#555" letter-spacing="1">VIEWER RETENTION BY EPISODE</text>
+            <!-- chart bg -->
+            <rect x="16" y="52" width="280" height="100" rx="3" fill="#111" stroke="#222" stroke-width="1"/>
+            <!-- grid lines -->
+            <line x1="16" y1="77" x2="296" y2="77" stroke="#1e1e1e" stroke-width="1"/>
+            <line x1="16" y1="102" x2="296" y2="102" stroke="#1e1e1e" stroke-width="1"/>
+            <line x1="16" y1="127" x2="296" y2="127" stroke="#1e1e1e" stroke-width="1"/>
+            <!-- retention curve (red) -->
+            <polyline points="26,58 66,62 106,70 146,82 186,100 226,118 266,138 286,148" fill="none" stroke="#e50914" stroke-width="2" stroke-linejoin="round"/>
+            <!-- area under curve -->
+            <polygon points="26,58 66,62 106,70 146,82 186,100 226,118 266,138 286,148 286,152 26,152" fill="#e50914" fill-opacity="0.08"/>
+            <!-- predicted curve (dimmer) -->
+            <polyline points="26,58 66,61 106,67 146,75 186,88 226,102 266,115 286,120" fill="none" stroke="#ff6b6b" stroke-width="1.5" stroke-dasharray="4 3" stroke-linejoin="round"/>
+            <!-- ep labels -->
+            <text x="23" y="162" font-family="monospace" font-size="5.5" fill="#444">E1</text>
+            <text x="63" y="162" font-family="monospace" font-size="5.5" fill="#444">E2</text>
+            <text x="103" y="162" font-family="monospace" font-size="5.5" fill="#444">E3</text>
+            <text x="143" y="162" font-family="monospace" font-size="5.5" fill="#444">E4</text>
+            <text x="183" y="162" font-family="monospace" font-size="5.5" fill="#444">E5</text>
+            <text x="223" y="162" font-family="monospace" font-size="5.5" fill="#444">E6</text>
+            <text x="263" y="162" font-family="monospace" font-size="5.5" fill="#444">E7</text>
+            <!-- y axis labels -->
+            <text x="6" y="61" font-family="monospace" font-size="5" fill="#333">100</text>
+            <text x="9" y="80" font-family="monospace" font-size="5" fill="#333">75</text>
+            <text x="9" y="105" font-family="monospace" font-size="5" fill="#333">50</text>
+            <text x="9" y="130" font-family="monospace" font-size="5" fill="#333">25</text>
+            <!-- legend -->
+            <line x1="16" y1="174" x2="30" y2="174" stroke="#e50914" stroke-width="2"/>
+            <text x="34" y="177" font-family="monospace" font-size="6" fill="#666">Actual dropout</text>
+            <line x1="110" y1="174" x2="124" y2="174" stroke="#ff6b6b" stroke-width="1.5" stroke-dasharray="3 2"/>
+            <text x="128" y="177" font-family="monospace" font-size="6" fill="#666">Model prediction</text>
+            <!-- right panel: stats -->
+            <rect x="308" y="38" width="156" height="48" rx="4" fill="#111" stroke="#1e1e1e" stroke-width="1"/>
+            <text x="320" y="52" font-family="monospace" font-size="6" fill="#555" letter-spacing="1">COMPLETION RATE</text>
+            <text x="320" y="68" font-family="Arial,sans-serif" font-size="18" font-weight="700" fill="#e50914">63.2%</text>
+            <text x="320" y="80" font-family="monospace" font-size="5.5" fill="#444">avg across training set</text>
+            <rect x="308" y="96" width="72" height="40" rx="4" fill="#111" stroke="#1e1e1e" stroke-width="1"/>
+            <text x="320" y="110" font-family="monospace" font-size="5.5" fill="#555">ACCURACY</text>
+            <text x="320" y="126" font-family="Arial,sans-serif" font-size="13" font-weight="700" fill="#e50914">71%</text>
+            <rect x="390" y="96" width="74" height="40" rx="4" fill="#111" stroke="#1e1e1e" stroke-width="1"/>
+            <text x="402" y="110" font-family="monospace" font-size="5.5" fill="#555">TOP SIGNAL</text>
+            <text x="402" y="122" font-family="Arial,sans-serif" font-size="7.5" font-weight="700" fill="#ff6b6b">Ep 3 Pacing</text>
+            <text x="402" y="132" font-family="monospace" font-size="5" fill="#444">sentiment + length</text>
+            <!-- sentiment bar -->
+            <text x="308" y="152" font-family="monospace" font-size="6" fill="#555" letter-spacing="1">SENTIMENT SIGNAL (EP 1–7)</text>
+            <rect x="308" y="158" width="156" height="10" rx="2" fill="#1a1a1a"/>
+            <rect x="308" y="158" width="35" height="10" rx="2" fill="#e50914" fill-opacity="0.9"/>
+            <rect x="345" y="158" width="50" height="10" rx="2" fill="#e50914" fill-opacity="0.5"/>
+            <rect x="397" y="158" width="30" height="10" rx="2" fill="#e50914" fill-opacity="0.3"/>
+            <rect x="429" y="158" width="35" height="10" rx="2" fill="#333"/>
+            <text x="308" y="182" font-family="monospace" font-size="5.5" fill="#444">Negative</text>
+            <text x="420" y="182" font-family="monospace" font-size="5.5" fill="#444">Neutral / Drop</text>
+          </svg>
+        </div>
         <div class="tags">
           <span class="tag">Python</span>
           <span class="tag">NLP</span>
