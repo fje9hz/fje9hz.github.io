@@ -448,14 +448,21 @@
     font-size: 0.75rem;
   }
 
-  .project-thumb {
+  .dashboard-embed {
     width: 100%;
-    aspect-ratio: 3 / 2;
-    object-fit: cover;
-    display: block;
+    aspect-ratio: 16 / 9;
     border: 1px solid var(--border);
     border-radius: 6px;
+    overflow: hidden;
     margin-bottom: 18px;
+    background: var(--bg-alt);
+  }
+
+  .dashboard-embed iframe {
+    width: 100%;
+    height: 100%;
+    display: block;
+    border: 0;
   }
 
   /* Experience */
@@ -960,7 +967,14 @@
           <li>Wrote 6 analyst-grade SQL queries measuring e-commerce KPIs: cohort retention, RFM customer segmentation, funnel conversion, product performance trends, time-series sales analysis, and customer LTV</li>
           <li>Built and embedded a live interactive Power BI dashboard visualizing warehouse outputs across 5 datasets — 614 days of revenue trends, 73K customers segmented by RFM, 7 UTM source conversion rates, 49K product-quarter performance rows, and 15-month cohort LTV analysis</li>
         </ul>
-        <img class="project-thumb" src="powerbi-thumbnail.png" alt="Power BI dashboard for the E-Commerce Analytics Warehouse" loading="lazy" />
+        <div class="dashboard-embed" aria-label="Interactive Power BI dashboard for the E-Commerce Analytics Warehouse">
+          <iframe
+            title="Olist Power BI Dashboard"
+            src="https://app.powerbi.com/view?r=eyJrIjoiNzgzNjI5Y2QtMzlmYy00YjM2LTlmOTMtZmZkNzkzMzk5OGM3IiwidCI6IjdiMzQ4MGM3LTM3MDctNDg3My04Yjc3LWUyMTY3MzNhNjVhYyIsImMiOjF9"
+            frameborder="0"
+            allowfullscreen="true">
+          </iframe>
+        </div>
         <div class="tags">
           <span class="tag">PostgreSQL</span>
           <span class="tag">Python</span>
